@@ -1,1 +1,159 @@
 # This is supposed to be the API specification
+# There will be 5 end points
+
+openapi: 3.0.0
+info:
+  title: Image manipulation API
+  description: API that takes an image and returns a manipulated image based on user request by Chad R. Stewart
+  contact:
+    name: Chad R. Stewart
+    url: https://wwww.twitter.com/Chad_R_Stewart
+  version: 1.0.0
+servers:
+  - url: http://test.chad.com
+paths:
+  /image-resize:
+    description: Resize a png image
+    post:
+      description: Takes an image with a percentage scale between 1 - 100 and returns the image to that scale
+      parameters:
+        - in: query
+          name: percentage-scale
+          required: true
+          schema:
+            type: integer
+            example: 50
+      requestBody:
+        content:
+          image/png:
+            schema:
+              type: string
+              format: binary
+      responses:
+        200:
+          description: Success Response
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        400:
+          description: Bad Request
+        415:
+          description: This media type isn't supported
+        500:
+          description: Unexpected error
+    get:
+      responses:
+        501:
+          description: Not implemented
+    put:
+      responses:
+        501:
+          description: Not implemented
+    patch:
+      responses:
+        501:
+          description: Not implemented
+    delete:
+      responses:
+        501:
+          description: Not implemented
+  /grayscale:
+    description: Makes an image grayscale
+    post:
+      description: Takes an image returns the image in grayscale
+      requestBody:
+        content:
+          image/png:
+            schema:
+              type: string
+              format: binary
+      responses:
+        200:
+          description: Success Response
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        400:
+          description: Bad Request
+        415:
+          description: This media type isn't supported
+        500:
+          description: Unexpected error
+    get:
+      responses:
+        501:
+          description: Not implemented
+    put:
+      responses:
+        501:
+          description: Not implemented
+    patch:
+      responses:
+        501:
+          description: Not implemented
+    delete:
+      responses:
+        501:
+          description: Not implemented
+  /transformation:
+    description: Transforms an image
+    post:
+      description: Takes an image with a transformation type and parameters on how to conduct that transformation and returns an image based on those specifications
+      parameters:
+        - in: query
+          name: transformation-type
+          required: true
+          schema:
+            type: string
+            example: rotate
+        - in: query
+          name: transformation-specs
+          required: true
+          schema:
+            type: object
+            example: {
+              rotation: int,
+              x-axis-flip: boolean,
+              y-axis-flip: boolean,
+            }
+      requestBody:
+        content:
+          image/png:
+            schema:
+              type: string
+              format: binary
+      responses:
+        200:
+          description: Success Response
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        400:
+          description: Bad Request
+        415:
+          description: This media type isn't supported
+        500:
+          description: Unexpected error
+    get:
+      responses:
+        501:
+          description: Not implemented
+    put:
+      responses:
+        501:
+          description: Not implemented
+    patch:
+      responses:
+        501:
+          description: Not implemented
+    delete:
+      responses:
+        501:
+          description: Not implemented
+#Need to implement two more paths for two image manipulations specified from 3rd party library
