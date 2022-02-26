@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "rm -rf dist && npx tsc && node dist/app",
-    "dev": "npx tsc && nodemon dist/app",
+    "start": "if [ -d ./dist ]; then rm -rf dist; fi; npx tsc && node dist/app",
+    "dev": "if [ -d ./dist ]; then rm -rf dist; fi; npx tsc && nodemon dist/app",
     "compile": "npx tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
