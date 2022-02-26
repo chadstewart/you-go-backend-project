@@ -156,4 +156,4 @@ paths:
       responses:
         501:
           description: Not implemented
-#Need to implement two more paths for two image manipulations specified from 3rd party library
+# Need to implement two more paths for two image manipulations specified from 3rd party library
