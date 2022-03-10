@@ -38,9 +38,9 @@ paths:
                 type: string
                 format: binary
         400:
-          description: Bad Request
+          description: This is not a properly formatted base64 image
         415:
-          description: This media type isn't supported
+          description: Please send an image that is .jpg, .jpeg, .jpe or .png
         500:
           description: Unexpected error
     get:
@@ -78,9 +78,9 @@ paths:
                 type: string
                 format: binary
         400:
-          description: Bad Request
+          description: This is not a properly formatted base64 image
         415:
-          description: This media type isn't supported
+          description: Please send an image that is .jpg, .jpeg, .jpe or .png
         500:
           description: Unexpected error
     get:
@@ -135,9 +135,9 @@ paths:
                 type: string
                 format: binary
         400:
-          description: Bad Request
+          description: This is not a properly formatted base64 image
         415:
-          description: This media type isn't supported
+          description: Please send an image that is .jpg, .jpeg, .jpe or .png
         500:
           description: Unexpected error
     get:

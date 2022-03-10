@@ -1,14 +1,10 @@
-import {Request, Response} from "express";
-import validateRequestIsImg from "../utils/validate-request-img";
-
-const wrongContentErrorMsg = "Please send an image that is .jpg, .jpeg, .jpe or .png";
+import { Request, Response } from "express";
+import { prepareData } from "../utils/prepareData";
+import { decodeAndStoreImg } from "../utils/decodeAndStoreImg";
 
 export function imageResize (req: Request, res: Response) {
-    const isValidRequestType = validateRequestIsImg(req);
-
-    if(isValidRequestType) {
-
-    }
-
-    return res.status(400).send(wrongContentErrorMsg);
+    const matches = prepareData(req, res);
+    const isMatchesAnArray = Array.isArray(matches);
+    if(isMatchesAnArray) return decodeAndStoreImg(matches, res);
+    return matches;
 };

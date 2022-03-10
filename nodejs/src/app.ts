@@ -5,7 +5,7 @@ const app = express();
 
 //Initialize Request Data Type
 app.use(express.json());
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '50mb' }));
 
 //Intialize Routers
 import indexRouter from "./routes/index-routes";
