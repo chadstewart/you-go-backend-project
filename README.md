@@ -37,6 +37,20 @@ Currently there's two commands that can be used to start the project.
 
 Both commands will check for and delete a 'dist' folder and an 'images' folder from the project folder. It will then create an images folder, run the TypeScript compiler and then run the compiled JavaScript code.
 
+## The Server
+
+This is a web server which with currently 5 endpoints:
+
+<ul>
+<li>image/image_resize: Resizes an image between 1% - 99% it's original size. *In Development*</li>
+<li>image/grayscale: Grayscales an image *To Be Developed*</li>
+<li>image/transformation: Transforms an image based on a few parameters *To Be Developed*</li>
+<li>*TBD*</li>
+<li>*TBD*</li>
+</ul>
+
+The server will accept post requests with images in base64 and only accepts image/jpeg and image/png files currently. All other files and requests will be rejected.
+
 ### My Design Decisions
 
 You can find a document listing my design decisions [here](./nodejs/design-decisions.md)
