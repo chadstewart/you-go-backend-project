@@ -12,6 +12,10 @@ This is an app written by [Chad Stewart](www.github.com/ChadStewart) for the [Yo
 <li>Nodemon</li>
 </ul>
 
+### Quick Note!!
+
+The project is in the nodejs folder and you'll need to navigate to that folder before following the instructions below.
+
 ### Installing Dependencies
 
 You can install all dependencies for this app by running the command:
@@ -32,6 +36,10 @@ Currently there's two commands that can be used to start the project.
     npm run dev
 
 Both commands will check for and delete a 'dist' folder and an 'images' folder from the project folder. It will then create an images folder, run the TypeScript compiler and then run the compiled JavaScript code.
+
+### My Design Decisions
+
+You can find a document listing my design decisions [here](./nodejs/design-decisions.md)
 
 ### Acknowledgements
 
