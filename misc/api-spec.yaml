@@ -15,7 +15,7 @@ paths:
   /image-resize:
     description: Resize a png image
     post:
-      description: Takes an image with a percentage scale between 1 - 100 and returns the image to that scale
+      description: Takes an image with a percentage scale between 1 - 99 and returns the image to that scale
       parameters:
         - in: query
           name: percentage-scale
@@ -28,7 +28,7 @@ paths:
           image/png:
             schema:
               type: string
-              format: binary
+              format: base64
       responses:
         200:
           description: Success Response
@@ -36,7 +36,7 @@ paths:
             image/png:
               schema:
                 type: string
-                format: binary
+                format: base64
         400:
           description: This is not a properly formatted base64 image
         415:
@@ -68,7 +68,7 @@ paths:
           image/png:
             schema:
               type: string
-              format: binary
+              format: base64
       responses:
         200:
           description: Success Response
@@ -76,7 +76,7 @@ paths:
             image/png:
               schema:
                 type: string
-                format: binary
+                format: base64
         400:
           description: This is not a properly formatted base64 image
         415:
@@ -125,7 +125,7 @@ paths:
           image/png:
             schema:
               type: string
-              format: binary
+              format: base64
       responses:
         200:
           description: Success Response
@@ -133,7 +133,7 @@ paths:
             image/png:
               schema:
                 type: string
-                format: binary
+                format: base64
         400:
           description: This is not a properly formatted base64 image
         415:
