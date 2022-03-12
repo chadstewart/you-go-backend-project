@@ -1,7 +1,17 @@
 import express from "express";
 import bodyParser from "body-parser";
+import https from "https";
+import fs from "fs";
+import path from "path";
 
 const app = express();
+const port = 3000;
+
+//Intialize https
+const secureServer = https.createServer({
+    key: fs.readFileSync(path.join(__dirname, '../cert', 'key.pem')),
+    cert: fs.readFileSync(path.join(__dirname, '../cert', 'cert.pem'))
+}, app);
 
 //Initialize Request Data Type
 app.use(express.json());
@@ -15,5 +25,4 @@ import imageRouter from "./routes/image-routes";
 app.use('/', indexRouter);
 app.use('/image', imageRouter);
 
-const port = 3000;
-app.listen(port, () => console.log(`Listening on http://localhost:${port}`));
+secureServer.listen(port, () => console.log(`Listening on https://localhost:${port}`));
