@@ -8,14 +8,17 @@ export function decodeAndStoreImg(matches: RegExpMatchArray, res: Response) {
         data: Buffer.from(matches[2], "base64")
     }
 
-    let decodedImg = response;
-    let imageBuffer = decodedImg.data;
-    let type = decodedImg.type;
-    let extension = mime.extension(type);
-    let fileName = `image-${Date.now()}.${extension}`;
+    const decodedImg = response;
+    const imageBuffer = decodedImg.data;
+    const type = decodedImg.type;
+    const extension = mime.extension(type);
+    const fileName = `image-${Date.now()}.${extension}`;
+    const fileLocation = `images/${fileName}`;
+    
     try {
-        fs.writeFileSync(`images/${fileName}`, imageBuffer, "utf8");
-        return res.send({ status: "The image was successfully uploaded!" });
+        fs.writeFileSync(fileLocation, imageBuffer, "utf8");
+        res.send({ status: "The image was successfully uploaded!" });
+        return fileLocation;
     } catch (error) {
         throw (error);
     }

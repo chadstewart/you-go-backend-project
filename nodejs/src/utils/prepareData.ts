@@ -5,7 +5,7 @@ import validateRequestIsImg from "../utils/validate-request-is-img";
 
 export function prepareData(req: Request,res: Response) {
     const isThereABase64StringVariable = 'base64String' in req.body;
-    if(!isThereABase64StringVariable) return res.status(415).send(errorMessages.notBase64Structured);
+    if(!isThereABase64StringVariable) return res.status(415).send(errorMessages.base64StringVariableNotFound);
 
     const { base64String } = req.body;
     const foundMatches = validateRequestIsBase64Format(base64String);

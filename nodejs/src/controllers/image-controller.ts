@@ -3,8 +3,13 @@ import { prepareData } from "../utils/prepareData";
 import { decodeAndStoreImg } from "../utils/decodeAndStoreImg";
 
 export function imageResize (req: Request, res: Response) {
-    const matches = prepareData(req, res);
-    const isMatchesAnArray = Array.isArray(matches);
-    if(isMatchesAnArray) return decodeAndStoreImg(matches, res);
-    return matches;
+    const matchesOrError = prepareData(req, res);
+    const isMatchesAnError = !Array.isArray(matchesOrError);
+    if(isMatchesAnError) return matchesOrError;
+    const fileLocation = decodeAndStoreImg(matchesOrError, res);
+    imageManipulation(fileLocation);
+};
+
+function imageManipulation(fileLocation: string) {
+
 };
