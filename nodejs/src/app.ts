@@ -7,7 +7,7 @@ import path from "path";
 const app = express();
 const port = 3000;
 
-//Intialize https
+//Enable https
 const secureServer = https.createServer({
     key: fs.readFileSync(path.join(__dirname, '../cert', 'key.pem')),
     cert: fs.readFileSync(path.join(__dirname, '../cert', 'cert.pem'))
@@ -25,4 +25,4 @@ import imageRouter from "./routes/image-routes";
 app.use('/', indexRouter);
 app.use('/image', imageRouter);
 
-secureServer.listen(port, () => console.log(`Listening on https://localhost:${port}`));
+secureServer.listen(port, () => console.log(`Navigate to https://localhost:${port} to view server`));
