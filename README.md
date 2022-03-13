@@ -1,7 +1,7 @@
 
 # Chad Stewart YouGo Back-End Project 0: Pics or It Didn't Happen
 
-This is an app written by [Chad Stewart](www.github.com/ChadStewart) for the [YouGo](wwww.github.com/YouGo) practice project.
+This is an app written by [Chad Stewart](www.github.com/ChadStewart) for the [YouGo](www.github.com/zenhorace/YouGo) practice project.
 
 ### Technologies Used:
 
