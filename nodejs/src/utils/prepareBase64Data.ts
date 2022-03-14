@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { errorMessages } from "../utils/errorMessages";
-import validateRequestIsBase64Format from "../utils/validate-base64-request";
-import validateRequestIsImg from "../utils/validate-request-is-img";
+import { errorMessages } from "./errorMessages";
+import validateRequestIsBase64Format from "./validate-base64-request";
+import validateRequestIsImg from "./validate-request-is-img";
 
-export function prepareData(req: Request,res: Response) {
+export function prepareBase64Data(req: Request,res: Response) {
     const isThereABase64StringVariable = 'base64String' in req.body;
     if(!isThereABase64StringVariable) return res.status(415).send(errorMessages.base64StringVariableNotFound);
 

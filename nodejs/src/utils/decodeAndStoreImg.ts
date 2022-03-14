@@ -2,7 +2,7 @@ import mime from "mime";
 import fs from "fs";
 import { Response } from "express";
 
-export function decodeAndStoreImg(matches: RegExpMatchArray, res: Response) {
+export function decodeAndStoreImg(matches: RegExpMatchArray) {
     const response = {
         type: matches[1],
         data: Buffer.from(matches[2], "base64")
