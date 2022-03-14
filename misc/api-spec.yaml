@@ -18,7 +18,7 @@ paths:
       description: Takes an image with a percentage scale between 1 - 99 and returns the image to that scale
       parameters:
         - in: query
-          name: percentage-scale
+          name: percentageScale
           required: true
           schema:
             type: integer

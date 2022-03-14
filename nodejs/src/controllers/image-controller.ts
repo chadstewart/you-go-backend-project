@@ -17,19 +17,21 @@ export function imageResize (req: Request, res: Response) {
         sendFileLocation: path.join(__dirname, '../../', `images/output-${Date.now()}.jpg`)
     };
     
-    imageManipulation(filesLocation.inputLocation, filesLocation.sendFileLocation);
-    
-    return res.status(200).sendFile(filesLocation.sendFileLocation);
+    imageManipulation(filesLocation.inputLocation, filesLocation.sendFileLocation, res);
 };
 
-function imageManipulation(fileLocation: string, outputLocation: string) {
+function imageManipulation(fileLocation: string, outputLocation: string, res: Response) {
     sharp(fileLocation)
-        .resize(300, 200)
+        .resize(300, 200, {
+            fit: 'contain'
+        })
         .toFile(outputLocation, function(error) {
             // output.jpg is a 300 pixels wide and 200 pixels high image
             // containing a scaled and cropped version of input.jpg
 
             if(error) throw error;
+    
+            return res.status(200).sendFile(outputLocation);
         });
     
     return;
