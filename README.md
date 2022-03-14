@@ -9,7 +9,7 @@ This is an app written by [Chad Stewart](https://www.github.com/ChadStewart) for
 <li>Node.js</li>
 <li>Express.js</li>
 <li>TypeScript</li>
-<li>Nodemon</li>
+<li>Sharp</li>
 </ul>
 
 ### Quick Note!!

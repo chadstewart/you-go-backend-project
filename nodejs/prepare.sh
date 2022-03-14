@@ -9,6 +9,7 @@ cleanUpDistFolder () {
 cleanUpImagesFolder () {
     if [ -d ./images ]
     then rm -rf images && mkdir images
+    else mkdir images
     fi
 }
 

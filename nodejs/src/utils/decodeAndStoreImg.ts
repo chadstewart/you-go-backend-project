@@ -17,7 +17,7 @@ export function decodeAndStoreImg(matches: RegExpMatchArray, res: Response) {
     
     try {
         fs.writeFileSync(fileLocation, imageBuffer, "utf8");
-        res.send({ status: "The image was successfully uploaded!" });
+        console.log("The image was successfully uploaded!" );
         return fileLocation;
     } catch (error) {
         throw (error);
