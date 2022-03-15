@@ -3,7 +3,7 @@ import { errorMessages } from "./errorMessages";
 import validateRequestIsBase64Format from "./validate-base64-request";
 import validateRequestIsImg from "./validate-request-is-img";
 
-export function prepareBase64Data(req: Request,res: Response) {
+export function prepareBase64ImageData(req: Request,res: Response) {
     const isThereABase64StringVariable = 'base64String' in req.body;
     if(!isThereABase64StringVariable) return res.status(415).json({
         success: "false",
@@ -18,7 +18,7 @@ export function prepareBase64Data(req: Request,res: Response) {
 
     const { base64String } = req.body;
     const foundMatches = validateRequestIsBase64Format(base64String);
-    if(!foundMatches) return res.status(400).json({
+    if(!foundMatches) return res.status(415).json({
         success: "false",
         message: errorMessages.notBase64Structured
     });
