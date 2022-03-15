@@ -1,6 +1,5 @@
 import mime from "mime";
 import fs from "fs";
-import { Response } from "express";
 
 export function decodeAndStoreImg(matches: RegExpMatchArray) {
     const response = {

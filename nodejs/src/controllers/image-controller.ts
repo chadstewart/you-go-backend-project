@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { prepareBase64Data } from "../utils/prepareBase64Data";
 import { decodeAndStoreImg } from "../utils/decodeAndStoreImg";
+import { encodeToBase64 } from "../utils/encodeToBase64";
 import path from "path";
 import sharp from "sharp";
 
@@ -21,7 +22,7 @@ export function imageResize (req: Request, res: Response) {
 };
 
 function imageManipulation(fileLocation: string, outputLocation: string, res: Response) {
-    sharp(fileLocation)
+    return sharp(fileLocation)
         .resize(300, 200, {
             fit: 'contain'
         })
@@ -31,8 +32,9 @@ function imageManipulation(fileLocation: string, outputLocation: string, res: Re
 
             if(error) throw error;
     
-            return res.status(200).sendFile(outputLocation);
+            return res.status(200).json({
+                success: "true",
+                message: encodeToBase64(outputLocation)
+            });
         });
-    
-    return;
 };

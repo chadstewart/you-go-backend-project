@@ -5,7 +5,10 @@ import validateRequestIsImg from "./validate-request-is-img";
 
 export function prepareBase64Data(req: Request,res: Response) {
     const isThereABase64StringVariable = 'base64String' in req.body;
-    if(!isThereABase64StringVariable) return res.status(415).send(errorMessages.base64StringVariableNotFound);
+    if(!isThereABase64StringVariable) return res.status(415).json({
+        success: "false",
+        message: errorMessages.base64StringVariableNotFound
+    });
 
     /* const isThereAPercentageVariable = 'percentage-scale' in req.body;
     if(!isThereAPercentageVariable) return res.status(415).send(errorMessages.percentageVariableNotFound);
@@ -15,10 +18,16 @@ export function prepareBase64Data(req: Request,res: Response) {
 
     const { base64String } = req.body;
     const foundMatches = validateRequestIsBase64Format(base64String);
-    if(!foundMatches) return res.status(400).send(errorMessages.notBase64Structured);
+    if(!foundMatches) return res.status(400).json({
+        success: "false",
+        message: errorMessages.notBase64Structured
+    });
     
     const isCompatibleImage = validateRequestIsImg(foundMatches[1]);
-    if(!isCompatibleImage) return res.status(415).send(errorMessages.notAnJpegOrPng);
+    if(!isCompatibleImage) return res.status(415).json({
+        success: "false",
+        message: errorMessages.notAnJpegOrPng
+    });
 
     return foundMatches;
 }
