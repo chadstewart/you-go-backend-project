@@ -42,7 +42,7 @@ Both commands will check for and delete a 'dist' folder and an 'images' folder f
 This is a web server which with currently 5 endpoints:
 
 <ul>
-<li>image/image_resize: Resizes an image between 1% - 99% it's original size. *In Development*</li>
+<li>image/image_resize: Resizes an image between 1% - 99% it's original size. *Completed*</li>
 <li>image/grayscale: Grayscales an image *To Be Developed*</li>
 <li>image/transformation: Transforms an image based on a few parameters *To Be Developed*</li>
 <li>*TBD*</li>

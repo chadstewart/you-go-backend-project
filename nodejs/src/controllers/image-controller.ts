@@ -7,6 +7,14 @@ import { decodeAndStoreImg } from "../utils/decodeAndStoreImg";
 import { encodeToBase64 } from "../utils/encodeToBase64";
 
 export function imageResize (req: Request, res: Response) {
+    const isThereAPercentageVariable = 'percentageScale' in req.body;
+    if(!isThereAPercentageVariable) return res.status(415).send(errorMessages.percentageVariableNotFound);
+    
+    const isPercentageTheRightScale = req.body.percentageScale >= 1 && req.body.percentageScale <= 99;
+    if(!isPercentageTheRightScale) return res.status(415).send(errorMessages.percentageNotBetween1And99);
+    
+    const { percentageScale } = req.body;
+
     const matchesOrError = prepareBase64ImageData(req, res);
     
     const isMatchesAnError = !Array.isArray(matchesOrError);
@@ -19,24 +27,43 @@ export function imageResize (req: Request, res: Response) {
         sendFileLocation: path.join(__dirname, '../../', `images/output-${Date.now()}.jpg`)
     };
     
-    imageManipulation(filesLocation.inputLocation, filesLocation.sendFileLocation, res);
+    imageManipulationResize(
+        percentageScale,
+        filesLocation.inputLocation,
+        filesLocation.sendFileLocation,
+        res
+    );
 };
 
-function imageManipulation(fileLocation: string, outputLocation: string, res: Response) {
+async function imageManipulationResize(
+        percentScale: number,
+        fileLocation: string,
+        outputLocation: string,
+        res: Response
+    ) {
     try {
+        const imgWidth = await sharp(fileLocation).metadata()
+        .then(metadata => {
+            if(metadata.width) return metadata.width;
+            return 0;
+        });
+
+        const newWidth = Math.round(imgWidth * (percentScale / 100));
+        
         return sharp(fileLocation)
-            .resize(300, 200, {
+            .resize( {
+                width: newWidth,
                 fit: 'contain'
             })
             .toFile(outputLocation, function(error) {
-                // output.jpg is a 300 pixels wide and 200 pixels high image
-                // containing a scaled and cropped version of input.jpg
-
                 if(error) throw error;
+
+                const responseMessage = encodeToBase64(outputLocation);
+                console.log('The image was successfully resized!');
         
                 return res.status(200).json({
                     success: true,
-                    message: encodeToBase64(outputLocation)
+                    message: responseMessage
                 });
             });
     } catch (error) {

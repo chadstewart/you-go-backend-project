@@ -6,12 +6,14 @@ I chose to use Node/Express since I already have a solid JavaScript background a
 
 Chose to use TypeScript to add static typing as well and to continue to learn TypeScript. Something that I really appreciate is having access to ES6 syntax in Node since it'll be compiled down to something Node will run. Definitely made the project more fun to write rather than writing ES5 stuff.
 
+I ended up using Sharp for image processing. This choice was mainly because I heard that it was one of if not the most popular JS library for image processing and manipulation so it felt like an easy choice.
+
 ## Endpoint Design
 
-I chose to split the endpoints rather than have a single image endpoint. I personally like to be more explicit when I'm coding and will always choice an implementation if I feel it helps with clarity. As opposed to building out a mechanism to choose the different alternations, I figured having the endpoints labeled explicitly would be clearer for other devs using the service. I also feel like the structure of the controller is a bit cleaner but that could be just me. For right now, that endpoints only accept image/jpeg and image/png mostly to keep things simple.
+I chose to split the endpoints rather than have a single image endpoint. I personally like to be more explicit when I'm coding and will always choice an implementation if I feel it helps with clarity. As opposed to building out a mechanism to choose the different alterations, I figured having the endpoints labeled explicitly would be clearer for other devs using the service. I also feel like the structure of the controller is a bit cleaner but that could be just me. For right now, that endpoints only accept image/jpeg and image/png mostly to keep things simple. Each endpoint will handle validating it's own parameters before attempting to get and decode the base64 string.
 
 <ul>
-<li>Image Resize: I decided that I would only allow the image to be compressed to 1% - 99% of it's original size. The blood oath I took when I attended art school forbids me to allow anyone to purposefully create a pixelated image.</li>
+<li>Image Resize: I decided that I would only allow the image to be compressed to 1% - 99% of it's original size. The blood oath I took when I attended art school forbids me to allow anyone to purposefully create a pixelated image. I decided to create an image manipulation function for the stuff with sharp. The original idea was that it would have all the image manipulation related functionality and you'd just pass the relevant information but just building this function out seems like tha's way too complicated of a task. I'll have to reassess how I think about doing image manipulation.</li>
 </ul>
 
 ## Image Upload

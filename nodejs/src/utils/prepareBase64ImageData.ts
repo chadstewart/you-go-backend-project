@@ -10,12 +10,6 @@ export function prepareBase64ImageData(req: Request,res: Response) {
         message: errorMessages.base64StringVariableNotFound
     });
 
-    /* const isThereAPercentageVariable = 'percentage-scale' in req.body;
-    if(!isThereAPercentageVariable) return res.status(415).send(errorMessages.percentageVariableNotFound);
-
-    const isPercentageTheRightScale = req.body.percentageScale >= 1 && req.body.percentageScale <= 99;
-    if(!isPercentageTheRightScale) return res.status(415).send(errorMessages.percentageNotBetween1And99); */
-
     const { base64String } = req.body;
     const foundMatches = validateRequestIsBase64Format(base64String);
     if(!foundMatches) return res.status(415).json({
