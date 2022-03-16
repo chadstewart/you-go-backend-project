@@ -19,13 +19,13 @@ export function prepareBase64ImageData(req: Request,res: Response) {
     const { base64String } = req.body;
     const foundMatches = validateRequestIsBase64Format(base64String);
     if(!foundMatches) return res.status(415).json({
-        success: "false",
+        success: false,
         message: errorMessages.notBase64Structured
     });
     
     const isCompatibleImage = validateRequestIsImg(foundMatches[1]);
     if(!isCompatibleImage) return res.status(415).json({
-        success: "false",
+        success: false,
         message: errorMessages.notAnJpegOrPng
     });
 

@@ -35,7 +35,7 @@ function imageManipulation(fileLocation: string, outputLocation: string, res: Re
                 if(error) throw error;
         
                 return res.status(200).json({
-                    success: "true",
+                    success: true,
                     message: encodeToBase64(outputLocation)
                 });
             });

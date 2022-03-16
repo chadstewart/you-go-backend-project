@@ -22,7 +22,7 @@ export function decodeAndStoreImg(matches: RegExpMatchArray, res: Response) {
         return fileLocation;
     } catch (error) {
         res.status(500).json({
-            success: "false",
+            success: false,
             message: errorMessages.internalServerError
         });
         throw error;
