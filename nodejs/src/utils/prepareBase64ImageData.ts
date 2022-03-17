@@ -1,7 +1,6 @@
 import { errorMessages } from "./errorMessages";
-import validateRequestIsBase64Format from "./validate-base64-request";
-import validateRequestIsImg from "./validate-request-is-img";
-import extractInfoFromBase64String from "./extra-info-from-base64-string";
+import { validateRequestIsBase64Format, validateRequestIsImg } from "./validation-utils";
+import { extractInfoFromBase64String } from "./base64utils";
 
 export function prepareBase64ImageData(base64String: string) {
     const isNotValid = !validateRequestIsBase64Format(base64String);

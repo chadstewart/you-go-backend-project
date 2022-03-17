@@ -1,6 +1,13 @@
 import mime from "mime";
 import fs from "fs";
 
+export function extractInfoFromBase64String (base64String: string) {
+    const base64StructureRegex = (/^data:([A-Za-z-+/]+);base64,(.+)$/);
+    const foundMatches = base64String.match(base64StructureRegex);
+    if(foundMatches) return foundMatches;
+    return ['', '', ''];
+};
+
 export function decodeAndStoreImg(matches: RegExpMatchArray) {
     const response = {
         type: matches[1],
@@ -22,3 +29,7 @@ export function decodeAndStoreImg(matches: RegExpMatchArray) {
         throw error;
     }
 }
+
+export function encodeToBase64 (imageURL: string) {
+    return "data:image/jpeg;base64," + fs.readFileSync(imageURL, "base64");
+};

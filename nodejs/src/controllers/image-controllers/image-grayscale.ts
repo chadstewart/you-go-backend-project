@@ -3,8 +3,7 @@ import sharp from "sharp";
 import { Request, Response } from "express";
 import { errorMessages } from "../../utils/errorMessages";
 import { prepareBase64ImageData } from "../../utils/prepareBase64ImageData";
-import { decodeAndStoreImg } from "../../utils/decodeAndStoreImg";
-import { encodeToBase64 } from "../../utils/encodeToBase64";
+import { decodeAndStoreImg, encodeToBase64 } from "../../utils/base64utils";
 
 export function imageGrayScale (req: Request, res: Response) {
     try {
