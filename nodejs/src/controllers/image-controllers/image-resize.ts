@@ -44,7 +44,7 @@ export function imageResize (req: Request, res: Response) {
             sendFileLocation: path.join(__dirname, `../../../`, `images/output-${Date.now()}.jpg`)
         };
         
-        imageManipulationResize(
+        imageManipulation(
             percentageScale,
             filesLocation.inputLocation,
             filesLocation.sendFileLocation,
@@ -59,7 +59,7 @@ export function imageResize (req: Request, res: Response) {
     }
 };
 
-async function imageManipulationResize(
+async function imageManipulation(
         percentScale: number,
         fileLocation: string,
         outputLocation: string,

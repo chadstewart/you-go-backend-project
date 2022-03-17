@@ -6,12 +6,8 @@ export default function validateRequestIsBase64Format (base64String: string) {
 
     if(isBase64StructuredString) {
         const foundMatches = base64String.match(base64StructureRegex);
-        if(foundMatches) {
-            const isNotFormattedCorrectly = foundMatches.length !== 3;
-            if(isNotFormattedCorrectly) return false;
-            return foundMatches;
-        }
+        if(foundMatches) return true;
     }
 
     return false;
-}
+};
