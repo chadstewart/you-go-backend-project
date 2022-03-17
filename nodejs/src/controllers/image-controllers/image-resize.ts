@@ -1,12 +1,12 @@
 import path from "path";
 import sharp from "sharp";
 import { Request, Response } from "express";
-import { errorMessages } from "../utils/errorMessages";
-import { prepareBase64ImageData } from "../utils/prepareBase64ImageData";
-import { decodeAndStoreImg } from "../utils/decodeAndStoreImg";
-import { encodeToBase64 } from "../utils/encodeToBase64";
+import { errorMessages } from "../../utils/errorMessages";
+import { prepareBase64ImageData } from "../../utils/prepareBase64ImageData";
+import { decodeAndStoreImg } from "../../utils/decodeAndStoreImg";
+import { encodeToBase64 } from "../../utils/encodeToBase64";
 
-export async function imageResize (req: Request, res: Response) {
+export function imageResize (req: Request, res: Response) {
     try {
         const isThereAPercentageVariable = 'percentageScale' in req.body;
         if(!isThereAPercentageVariable) return res.status(400).json({
@@ -41,7 +41,7 @@ export async function imageResize (req: Request, res: Response) {
         
         const filesLocation = {
             inputLocation,
-            sendFileLocation: path.join(__dirname, '../../', `images/output-${Date.now()}.jpg`)
+            sendFileLocation: path.join(__dirname, `../../../`, `images/output-${Date.now()}.jpg`)
         };
         
         imageManipulationResize(
@@ -79,8 +79,7 @@ async function imageManipulationResize(
                 width: newWidth,
                 fit: 'contain'
             })
-            .toFile(outputLocation, function(error) {
-                if(error) throw error;
+            .toFile(outputLocation, () => {
                 const responseMessage = encodeToBase64(outputLocation);
                 console.log('The image was successfully resized!');
 
