@@ -1,9 +1,7 @@
 import mime from "mime";
 import fs from "fs";
-import { Response } from "express";
-import { errorMessages } from "./errorMessages";
 
-export function decodeAndStoreImg(matches: RegExpMatchArray, res: Response) {
+export function decodeAndStoreImg(matches: RegExpMatchArray) {
     const response = {
         type: matches[1],
         data: Buffer.from(matches[2], "base64")
@@ -21,10 +19,6 @@ export function decodeAndStoreImg(matches: RegExpMatchArray, res: Response) {
         console.log("The image was successfully uploaded!" );
         return fileLocation;
     } catch (error) {
-        res.status(500).json({
-            success: false,
-            message: errorMessages.internalServerError
-        });
         throw error;
     }
 }
