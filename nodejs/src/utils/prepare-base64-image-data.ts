@@ -1,4 +1,4 @@
-import { errorMessages } from "./errorMessages";
+import { errorMessages } from "./error-utils";
 import { validateRequestIsBase64Format, validateRequestIsImg } from "./validation-utils";
 import { extractInfoFromBase64String } from "./base64utils";
 

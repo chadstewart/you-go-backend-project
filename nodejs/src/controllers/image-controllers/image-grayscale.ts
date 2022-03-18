@@ -1,8 +1,8 @@
 import path from "path";
 import sharp from "sharp";
 import { Request, Response } from "express";
-import { errorMessages } from "../../utils/errorMessages";
-import { prepareBase64ImageData } from "../../utils/prepareBase64ImageData";
+import { errorMessages } from "../../utils/error-utils";
+import { prepareBase64ImageData } from "../../utils/prepare-base64-image-data";
 import { decodeAndStoreImg, encodeToBase64 } from "../../utils/base64utils";
 
 export function imageGrayScale (req: Request, res: Response) {
