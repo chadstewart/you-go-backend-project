@@ -4,11 +4,11 @@ import https from "https";
 import fs from "fs";
 import path from "path";
 
-const app = express();
+export const app = express();
 const port = 3000;
 
 //Enable https
-const secureServer = https.createServer({
+export const secureServer = https.createServer({
     key: fs.readFileSync(path.join(__dirname, '../cert', 'key.pem')),
     cert: fs.readFileSync(path.join(__dirname, '../cert', 'cert.pem'))
 }, app);
