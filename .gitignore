@@ -3,3 +3,4 @@ package-lock.json
 dist
 cert
 images
+coverage

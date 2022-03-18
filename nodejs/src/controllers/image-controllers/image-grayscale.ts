@@ -39,6 +39,10 @@ export function imageGrayScale (req: Request, res: Response) {
     }
 };
 
-function imageManipulation(inputLocation: string, outputLocation: string, res: Response) {
+function imageManipulation (
+        inputLocation: string,
+        outputLocation: string,
+        res: Response
+    ) {
 
 };
