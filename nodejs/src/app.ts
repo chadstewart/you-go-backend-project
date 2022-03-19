@@ -5,13 +5,6 @@ import fs from "fs";
 import path from "path";
 
 export const app = express();
-const port = 3000;
-
-//Enable https
-export const secureServer = https.createServer({
-    key: fs.readFileSync(path.join(__dirname, '../cert', 'key.pem')),
-    cert: fs.readFileSync(path.join(__dirname, '../cert', 'cert.pem'))
-}, app);
 
 //Initialize Request Data Type
 app.use(express.json());
@@ -25,4 +18,8 @@ import imageRouter from "./routes/image-routes";
 app.use('/', indexRouter);
 app.use('/image', imageRouter);
 
-secureServer.listen(port, () => console.log(`Navigate to https://localhost:${port} to view server`));
+//Enable https
+export const secureServer = https.createServer({
+    key: fs.readFileSync(path.join(__dirname, '../cert', 'key.pem')),
+    cert: fs.readFileSync(path.join(__dirname, '../cert', 'cert.pem'))
+}, app);

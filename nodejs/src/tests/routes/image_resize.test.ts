@@ -1,13 +1,15 @@
 import request from "supertest";
-import { app, secureServer as server } from "../../app";
+import { app } from "../../app";
 import requestPayload from "../test-helpers/test-payload";
 import fs from "fs";
 
 describe("Images Resize Route", () => {
-  afterEach(done => {
-    server.close();
+  beforeAll(() => {
+    fs.mkdirSync("images");
+  });
+
+  afterAll(() => {
     fs.rmSync("images", { recursive: true, force: true });
-    done();
   });
 
   it('It should send a 200 status code with a json payload with a proper request', async () => {
