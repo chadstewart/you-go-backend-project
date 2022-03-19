@@ -24,10 +24,6 @@ You can install all dependencies for this app by running the command:
 
 ### Running the application
 
-Before attempting to run the project make sure to run the command:
-
-    chmod +x ./prepare.sh
-
 Run the above command in the folder of the project which should contain the prepare.sh file.
 
 Currently there's two commands that can be used to start the project.

@@ -22,6 +22,8 @@ export function decodeAndStoreImg(matches: RegExpMatchArray) {
     const fileLocation = `images/${fileName}`;
     
     try {
+        const isThereNoImageFolder = !fs.existsSync("images");
+        if(isThereNoImageFolder) fs.mkdirSync("images");
         fs.writeFileSync(fileLocation, imageBuffer, "utf8");
         console.log("The image was successfully uploaded!" );
         return fileLocation;
