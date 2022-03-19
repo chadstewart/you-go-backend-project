@@ -1,10 +1,12 @@
 import request from "supertest";
 import { app, secureServer as server } from "../../app";
 import requestPayload from "../test-helpers/test-payload";
+import fs from "fs";
 
 describe("Images Resize Route", () => {
   afterEach(done => {
     server.close();
+    fs.rmSync("images", { recursive: true, force: true });
     done();
   });
 
