@@ -1,6 +1,6 @@
 import request from "supertest";
 import { app, secureServer as server } from "../../app";
-import requestPayload from "../test_utils/test-payload";
+import requestPayload from "../test-helpers/test-payload";
 
 describe("Images Resize Route", () => {
   afterEach(done => {
@@ -29,8 +29,7 @@ describe("Images Resize Route", () => {
     const res = await request(app)
                      .post("/image/image_resize")
                      .send(testObject);
-
-                     console.log(res);
+                     
     expect(res.statusCode).toEqual(415);
   });
 

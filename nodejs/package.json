@@ -7,7 +7,7 @@
     "start": "./prepare.sh && npx tsc && node dist/app",
     "dev": "./prepare.sh && nodemon src/app.ts",
     "compile": "npx tsc",
-    "test": "jest --coverage --verbose",
+    "test": "jest --coverage",
     "test:watch": "jest --watch"
   },
   "keywords": [],
