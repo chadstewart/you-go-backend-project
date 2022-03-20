@@ -14,9 +14,9 @@ I chose to split the endpoints rather than have a single image endpoint. I perso
 
 <ul>
 <li>Image Resize: I decided that I would only allow the image to be compressed to 1% - 99% of it's original size. The blood oath I took when I attended art school forbids me to allow anyone to purposefully create a pixelated image. I decided to create an image manipulation function for the stuff with sharp. The original idea was that it would have all the image manipulation related functionality and you'd just pass the relevant information but just building this function out seems like tha's way too complicated of a task. I'll have to reassess how I think about doing image manipulation. I'll also likely do this for every other endpoint</li>
-</ul>
 <li>Image Grayscale: Not much to say about this honestly. It's very similar to Image Resize except taking out the resize specific parts.
 </li>
+</ul>
 
 ## Image Upload
 

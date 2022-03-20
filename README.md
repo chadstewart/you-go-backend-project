@@ -31,7 +31,10 @@ Currently there's two commands that can be used to start the project.
     npm start
     npm run dev
 
-Both commands will check for and delete a 'dist' folder and an 'images' folder from the project folder. It will then create an images folder, run the TypeScript compiler and then run the compiled JavaScript code.
+<ul>
+<li>npm start will compile ts files into a dist folder and then run the app there.</li>
+<li>npm run dev will start nodemon and listen for changes in your ts files and relaunch the server.</li>
+</ul>
 
 ## The Server
 

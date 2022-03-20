@@ -53,10 +53,9 @@ function imageManipulation (
         try{
             sharp(inputLocation)
             .grayscale()
-    
             .toFile(outputLocation, () => {
                 const responseMessage = encodeToBase64(outputLocation);
-                console.log('The image was successfully resized!');
+                console.log('The image was successfully grayscaled!');
     
                 return res.status(200).json({
                     success: true,
