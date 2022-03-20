@@ -22,9 +22,9 @@ You can install all dependencies for this app by running the command:
 
     npm i
 
-### Running the application
+This is an https server. You'll need a SSL key and certificate to use this which will need to be installed in a folder called `cert`.
 
-Run the above command in the folder of the project which should contain the prepare.sh file.
+### Running the application
 
 Currently there's two commands that can be used to start the project.
 
@@ -36,7 +36,13 @@ Currently there's two commands that can be used to start the project.
 <li>npm run dev will start nodemon and listen for changes in your ts files and relaunch the server.</li>
 </ul>
 
-## The Server
+### Running tests for the application
+
+You can run tests for the application using this command:
+
+    npm test
+
+### The Server
 
 This is a web server which with currently 5 endpoints:
 

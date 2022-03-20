@@ -50,19 +50,19 @@ function imageManipulation (
         outputLocation: string,
         res: Response
     ) {
-        try{
-            sharp(inputLocation)
-            .grayscale()
-            .toFile(outputLocation, () => {
-                const responseMessage = encodeToBase64(outputLocation);
-                console.log('The image was successfully grayscaled!');
-    
-                return res.status(200).json({
-                    success: true,
-                    message: responseMessage
-                });
+    try{
+        sharp(inputLocation)
+        .grayscale()
+        .toFile(outputLocation, () => {
+            const responseMessage = encodeToBase64(outputLocation);
+            console.log('The image was successfully grayscaled!');
+
+            return res.status(200).json({
+                success: true,
+                message: responseMessage
             });
-        } catch (error) {
-            throw error;
-        }
+        });
+    } catch (error) {
+        throw error;
+    }
 };
