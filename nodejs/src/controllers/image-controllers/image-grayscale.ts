@@ -30,6 +30,12 @@ export function imageGrayScale (req: Request, res: Response) {
             inputLocation,
             sendFileLocation: path.join(__dirname, `../../../`, `images/output-${Date.now()}.jpg`)
         };
+
+        imageManipulation(
+            filesLocation.inputLocation,
+            filesLocation.sendFileLocation,
+            res
+        );
     } catch (error) {
         console.log(error);
         return res.status(500).json({
@@ -44,5 +50,20 @@ function imageManipulation (
         outputLocation: string,
         res: Response
     ) {
-
+        try{
+            sharp(inputLocation)
+            .grayscale()
+    
+            .toFile(outputLocation, () => {
+                const responseMessage = encodeToBase64(outputLocation);
+                console.log('The image was successfully resized!');
+    
+                return res.status(200).json({
+                    success: true,
+                    message: responseMessage
+                });
+            });
+        } catch (error) {
+            throw error;
+        }
 };

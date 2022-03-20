@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "if [ -d ./dist ]; then rm -rf dist; fi; if [ -d ./images ]; then rm -rf images; fi; npx tsc && node dist/server",
-    "dev": "if [ -d ./dist ]; then rm -rf dist; fi; if [ -d ./images ]; then rm -rf images; fi; nodemon src/server.ts",
+    "dev": "if [ -d ./images ]; then rm -rf images; fi; nodemon src/server.ts",
     "compile": "npx tsc",
     "test": "jest --coverage",
     "test:watch": "jest --watch"
