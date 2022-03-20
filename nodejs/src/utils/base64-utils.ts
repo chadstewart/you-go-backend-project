@@ -1,8 +1,8 @@
+import { base64StructureRegex } from "./validation-utils";
 import mime from "mime";
 import fs from "fs";
 
 export function extractInfoFromBase64String (base64String: string) {
-    const base64StructureRegex = (/^data:([A-Za-z-+/]+);base64,(.+)$/);
     const foundMatches = base64String.match(base64StructureRegex);
     if(foundMatches) return foundMatches;
     return [''];

@@ -4,10 +4,6 @@ import requestPayload from "../test-helpers/test-payload";
 import fs from "fs";
 
 describe("Images Resize Route", () => {
-  beforeAll(() => {
-    fs.mkdirSync("images");
-  });
-
   afterAll(() => {
     fs.rmSync("images", { recursive: true, force: true });
   });
