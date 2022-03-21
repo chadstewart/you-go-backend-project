@@ -12,10 +12,12 @@ info:
 servers:
   - url: http://test.chad.com
 paths:
-  /image-resize:
+  /image/image-resize:
     description: Resize a png image
     post:
       description: Takes an image with a percentage scale between 1 - 99 and returns the image to that scale
+      tags:
+        - image_resize
       parameters:
         - in: query
           name: percentageScale
@@ -44,25 +46,35 @@ paths:
         500:
           description: Unexpected error
     get:
+      tags:
+        - image_resize
       responses:
         501:
           description: Not implemented
     put:
+      tags:
+        - image_resize
       responses:
         501:
           description: Not implemented
     patch:
+      tags:
+        - image_resize
       responses:
         501:
           description: Not implemented
     delete:
+      tags:
+        - image_resize
       responses:
         501:
           description: Not implemented
-  /grayscale:
+  /image/image_grayscale:
     description: Makes an image grayscale
     post:
       description: Takes an image returns the image in grayscale
+      tags:
+        - image_grayscale
       requestBody:
         content:
           image/png:
@@ -84,25 +96,35 @@ paths:
         500:
           description: Unexpected error
     get:
+      tags:
+        - image_grayscale
       responses:
         501:
           description: Not implemented
     put:
+      tags:
+        - image_grayscale
       responses:
         501:
           description: Not implemented
     patch:
+      tags:
+        - image_grayscale
       responses:
         501:
           description: Not implemented
     delete:
+      tags:
+        - image_grayscale
       responses:
         501:
           description: Not implemented
-  /transformation:
+  /image/image_transformation:
     description: Transforms an image
     post:
       description: Takes an image with a transformation type and parameters on how to conduct that transformation and returns an image based on those specifications
+      tags:
+        - image_transformation
       parameters:
         - in: query
           name: transformation-type
@@ -141,18 +163,26 @@ paths:
         500:
           description: Unexpected error
     get:
+      tags:
+        - image_transformation
       responses:
         501:
           description: Not implemented
     put:
+      tags:
+        - image_transformation
       responses:
         501:
           description: Not implemented
     patch:
+      tags:
+        - image_transformation
       responses:
         501:
           description: Not implemented
     delete:
+      tags:
+        - image_transformation
       responses:
         501:
           description: Not implemented
