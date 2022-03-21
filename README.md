@@ -42,6 +42,10 @@ You can run tests for the application using this command:
 
     npm test
 
+### Viewing the Swagger Documentation for the API
+
+You can view the Swagger Documentation for the API by starting the application using either command above and then navigating to this link: https://localhost:3000/api-docs
+
 ### The Server
 
 This is a web server which with currently 5 endpoints:

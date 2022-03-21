@@ -3,8 +3,14 @@ import bodyParser from "body-parser";
 import https from "https";
 import fs from "fs";
 import path from "path";
+import swaggerUi from 'swagger-ui-express';
+import YAML from 'yamljs';
 
 export const app = express();
+
+//Initialize Swagger Doc Server
+const swaggerDocument = YAML.load('./src/docs/api-spec.yaml');
+app.use('/api-docs', swaggerUi.serve,   swaggerUi.setup(swaggerDocument));
 
 //Initialize Request Data Type
 app.use(express.json());
