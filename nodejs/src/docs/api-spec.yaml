@@ -112,17 +112,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    description: Whether the response was a success or not
-                  message:
-                    type: string
-                    description: Content of the response
-                example:
-                  success: false
-                  message: "Not implemented"
+                $ref: '#/components/NotImplemented'
     put:
       tags:
         - image_resize
@@ -132,17 +122,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    description: Whether the response was a success or not
-                  message:
-                    type: string
-                    description: Content of the response
-                example:
-                  success: false
-                  message: "Not implemented"
+                $ref: '#/components/NotImplemented'
     patch:
       tags:
         - image_resize
@@ -152,17 +132,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    description: Whether the response was a success or not
-                  message:
-                    type: string
-                    description: Content of the response
-                example:
-                  success: false
-                  message: "Not implemented"
+                $ref: '#/components/NotImplemented'
     delete:
       tags:
         - image_resize
@@ -172,17 +142,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    description: Whether the response was a success or not
-                  message:
-                    type: string
-                    description: Content of the response
-                example:
-                  success: false
-                  message: "Not implemented"
+                $ref: '#/components/NotImplemented'
   /image/image_grayscale:
     description: Makes an image grayscale
     post:
@@ -278,17 +238,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    description: Whether the response was a success or not
-                  message:
-                    type: string
-                    description: Content of the response
-                example:
-                  success: false
-                  message: "Not implemented"
+                $ref: '#/components/NotImplemented'
     put:
       tags:
         - image_grayscale
@@ -298,17 +248,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    description: Whether the response was a success or not
-                  message:
-                    type: string
-                    description: Content of the response
-                example:
-                  success: false
-                  message: "Not implemented"
+                $ref: '#/components/NotImplemented'
     patch:
       tags:
         - image_grayscale
@@ -318,17 +258,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    description: Whether the response was a success or not
-                  message:
-                    type: string
-                    description: Content of the response
-                example:
-                  success: false
-                  message: "Not implemented"
+                $ref: '#/components/NotImplemented'
     delete:
       tags:
         - image_grayscale
@@ -338,17 +268,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    description: Whether the response was a success or not
-                  message:
-                    type: string
-                    description: Content of the response
-                example:
-                  success: false
-                  message: "Not implemented"
+                $ref: '#/components/NotImplemented'
   /image/image_transformation:
     description: Transforms an image
     post:
@@ -449,17 +369,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    description: Whether the response was a success or not
-                  message:
-                    type: string
-                    description: Content of the response
-                example:
-                  success: false
-                  message: "Not implemented"
+                $ref: '#/components/NotImplemented'
     put:
       tags:
         - image_transformation
@@ -469,17 +379,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    description: Whether the response was a success or not
-                  message:
-                    type: string
-                    description: Content of the response
-                example:
-                  success: false
-                  message: "Not implemented"
+                $ref: '#/components/NotImplemented'
     patch:
       tags:
         - image_transformation
@@ -489,17 +389,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    description: Whether the response was a success or not
-                  message:
-                    type: string
-                    description: Content of the response
-                example:
-                  success: false
-                  message: "Not implemented"
+                $ref: '#/components/NotImplemented'
     delete:
       tags:
         - image_transformation
@@ -509,15 +399,19 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    description: Whether the response was a success or not
-                  message:
-                    type: string
-                    description: Content of the response
-                example:
-                  success: false
-                  message: "Not implemented"
+                $ref: '#/components/NotImplemented'
+components:
+  NotImplemented:
+    type: object
+    properties:
+      success:
+        type: boolean
+        description: Whether the response was a success or not
+      message:
+        type: string
+        description: Content of the response
+    example:
+      success: false
+      message: "Not implemented"
+    
 # Need to implement two more paths for two image manipulations specified from 3rd party library
