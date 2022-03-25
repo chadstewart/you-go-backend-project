@@ -9,8 +9,14 @@ import YAML from 'yamljs';
 export const app = express();
 
 //Initialize Swagger Doc Server
+const swaggerOptions = {
+    swaggerOptions: {
+        docExpansion: true
+    }
+};
+
 const swaggerDocument = YAML.load('./src/docs/api-spec.yaml');
-app.use('/api-docs', swaggerUi.serve,   swaggerUi.setup(swaggerDocument));
+app.use('/api-docs', swaggerUi.serve,   swaggerUi.setup(swaggerDocument, swaggerOptions));
 
 //Initialize Request Data Type
 app.use(express.json());

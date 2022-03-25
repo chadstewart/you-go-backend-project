@@ -10,41 +10,99 @@ info:
     url: https://wwww.twitter.com/Chad_R_Stewart
   version: 1.0.0
 servers:
-  - url: http://test.chad.com
+  - url: https://localhost:3000
 paths:
-  /image/image-resize:
+  /image/image_resize/:
     description: Resize a png image
     post:
       description: Takes an image with a percentage scale between 1 - 99 and returns the image to that scale
       tags:
         - image_resize
-      parameters:
-        - in: query
-          name: percentageScale
-          required: true
-          schema:
-            type: integer
-            example: 50
       requestBody:
+        required: true
         content:
-          image/png:
+          application/json:
             schema:
-              type: string
-              format: base64
+              type: object
+              required:
+                - percentageScale
+                - base64String
+              properties:
+                percentageScale:
+                  type: number
+                  description: The scale between 1 - 99 in which the book can be resized.
+                base64String:
+                  type: string
+                  description: The image as a base64 string
+              example:
+                percentageScale: 40
+                base64String: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
       responses:
         200:
           description: Success Response
           content:
-            image/png:
+            application/json:
               schema:
-                type: string
-                format: base64
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Whether the response was a success or not
+                  message:
+                    type: string
+                    description: Content of the response
+                example:
+                  success: true
+                  message: "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+
         400:
           description: This is not a properly formatted base64 image
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Whether the response was a success or not
+                  message:
+                    type: string
+                    description: Content of the response
+                example:
+                  success: false
+                  message: "This is not a properly formatted base64 image"
         415:
           description: Please send an image that is .jpg, .jpeg, .jpe or .png
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Whether the response was a success or not
+                  message:
+                    type: string
+                    description: Content of the response
+                example:
+                  success: false
+                  message: "Please send an image that is .jpg, .jpeg, .jpe or .png"
         500:
           description: Unexpected error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Whether the response was a success or not
+                  message:
+                    type: string
+                    description: Content of the response
+                example:
+                  success: false
+                  message: "There was an internal server error"
     get:
       tags:
         - image_resize
@@ -76,25 +134,85 @@ paths:
       tags:
         - image_grayscale
       requestBody:
+        required: true
         content:
-          image/png:
+          application/json:
             schema:
-              type: string
-              format: base64
+              type: object
+              required:
+                - base64String
+              properties:
+                base64String:
+                  type: string
+                  description: The image as a base64 string
+              example:
+                base64String: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
       responses:
         200:
           description: Success Response
           content:
-            image/png:
+            application/json:
               schema:
-                type: string
-                format: base64
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Whether the response was a success or not
+                  message:
+                    type: string
+                    description: Content of the response
+                example:
+                  success: true
+                  message: "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+
         400:
           description: This is not a properly formatted base64 image
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Whether the response was a success or not
+                  message:
+                    type: string
+                    description: Content of the response
+                example:
+                  success: false
+                  message: "This is not a properly formatted base64 image"
         415:
           description: Please send an image that is .jpg, .jpeg, .jpe or .png
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Whether the response was a success or not
+                  message:
+                    type: string
+                    description: Content of the response
+                example:
+                  success: false
+                  message: "Please send an image that is .jpg, .jpeg, .jpe or .png"
         500:
           description: Unexpected error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Whether the response was a success or not
+                  message:
+                    type: string
+                    description: Content of the response
+                example:
+                  success: false
+                  message: "There was an internal server error"
     get:
       tags:
         - image_grayscale
@@ -125,43 +243,91 @@ paths:
       description: Takes an image with a transformation type and parameters on how to conduct that transformation and returns an image based on those specifications
       tags:
         - image_transformation
-      parameters:
-        - in: query
-          name: transformation-type
-          required: true
-          schema:
-            type: string
-            example: rotate
-        - in: query
-          name: transformation-specs
-          required: true
-          schema:
-            type: object
-            example: {
-              rotation: int,
-              x-axis-flip: boolean,
-              y-axis-flip: boolean,
-            }
       requestBody:
+        required: true
         content:
-          image/png:
+          application/json:
             schema:
-              type: string
-              format: base64
+              type: object
+              required:
+                - transformation-specs
+                - base64String
+              properties:
+                transformation-specs:
+                  type: object
+                  description: specifications on the transformation based on the type
+                base64String:
+                  type: string
+                  description: The image as a base64 string
+              example:
+                transformation-specs: { "rotation": 60, "x-axis-flip": "true" }
+                base64String: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
       responses:
         200:
           description: Success Response
           content:
-            image/png:
+            application/json:
               schema:
-                type: string
-                format: base64
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Whether the response was a success or not
+                  message:
+                    type: string
+                    description: Content of the response
+                example:
+                  success: true
+                  message: "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+
         400:
           description: This is not a properly formatted base64 image
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Whether the response was a success or not
+                  message:
+                    type: string
+                    description: Content of the response
+                example:
+                  success: false
+                  message: "This is not a properly formatted base64 image"
         415:
           description: Please send an image that is .jpg, .jpeg, .jpe or .png
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Whether the response was a success or not
+                  message:
+                    type: string
+                    description: Content of the response
+                example:
+                  success: false
+                  message: "Please send an image that is .jpg, .jpeg, .jpe or .png"
         500:
           description: Unexpected error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Whether the response was a success or not
+                  message:
+                    type: string
+                    description: Content of the response
+                example:
+                  success: false
+                  message: "There was an internal server error"
     get:
       tags:
         - image_transformation
