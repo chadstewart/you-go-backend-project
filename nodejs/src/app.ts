@@ -15,12 +15,12 @@ const swaggerOptions = {
     }
 };
 
-const swaggerDocument = YAML.load('./src/docs/api-spec.yaml');
+const swaggerDocument = YAML.load(path.join(__dirname, "../api-docs", "api-spec.yaml"));
 app.use('/api-docs', swaggerUi.serve,   swaggerUi.setup(swaggerDocument, swaggerOptions));
 
 //Initialize Request Data Type
 app.use(express.json());
-app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.json({ limit: "50mb" }));
 
 //Intialize Routers
 import indexRouter from "./routes/index-routes";
@@ -32,6 +32,6 @@ app.use('/image', imageRouter);
 
 //Enable https
 export const secureServer = https.createServer({
-    key: fs.readFileSync(path.join(__dirname, '../cert', 'key.pem')),
-    cert: fs.readFileSync(path.join(__dirname, '../cert', 'cert.pem'))
+    key: fs.readFileSync(path.join(__dirname, "../cert", "key.pem")),
+    cert: fs.readFileSync(path.join(__dirname, "../cert", "cert.pem"))
 }, app);

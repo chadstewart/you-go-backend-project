@@ -5,5 +5,5 @@ export const errorMessages = {
     percentageVariableNotFound: "The percentageScale varialbe was not found in the request",
     percentageNotBetween1And99: "The percentage that was passed is not between 1 and 99",
     internalServerError: "There was an internal server error",
-    notImplemented: "This verb is not implemented"
+    notImplemented: "This HTTP verb is not implemented"
 };

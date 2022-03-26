@@ -21,6 +21,18 @@ describe("Images Resize Route", () => {
     expect(receivedObject).toBeDefined();
   });
 
+  it('It should send a 400 status code when the base64 string isn\'t properly formatted', async () => {
+    const testObject = requestPayload;
+  
+    testObject.base64String = "dat:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+
+    const res = await request(app)
+                     .post("/image/image_resize")
+                     .send(testObject);
+                     
+    expect(res.statusCode).toEqual(400);
+  });
+
   it('It should send a 415 status code when the wrong data type is used', async () => {
     const testObject = requestPayload;
   

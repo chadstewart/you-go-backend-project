@@ -292,7 +292,7 @@ paths:
                   type: string
                   description: The image as a base64 string
               example:
-                transformation-specs: { "rotation": 60, "x-axis-flip": "true" }
+                transformation-specs: { "resizeScale": 40, "rotation": 60, "x-axis-flip": "true", "y-axis-flip": "true" }
                 base64String: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
       responses:
         200:
@@ -412,6 +412,6 @@ components:
         description: Content of the response
     example:
       success: false
-      message: "Not implemented"
+      message: "This HTTP verb is not implemented"
     
 # Need to implement two more paths for two image manipulations specified from 3rd party library
