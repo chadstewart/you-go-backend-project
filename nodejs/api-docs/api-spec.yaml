@@ -12,12 +12,12 @@ info:
 servers:
   - url: https://localhost:3000
 paths:
-  /image/image_resize/:
+  /image/resize/:
     description: Resize a png image
     post:
       description: Takes an image with a percentage scale between 1 - 99 and returns the image to that scale
       tags:
-        - image_resize
+        - resize
       requestBody:
         required: true
         content:
@@ -105,7 +105,7 @@ paths:
                   message: "There was an internal server error"
     get:
       tags:
-        - image_resize
+        - resize
       responses:
         501:
           description: Not implemented
@@ -115,7 +115,7 @@ paths:
                 $ref: '#/components/NotImplemented'
     put:
       tags:
-        - image_resize
+        - resize
       responses:
         501:
           description: Not implemented
@@ -125,7 +125,7 @@ paths:
                 $ref: '#/components/NotImplemented'
     patch:
       tags:
-        - image_resize
+        - resize
       responses:
         501:
           description: Not implemented
@@ -135,7 +135,7 @@ paths:
                 $ref: '#/components/NotImplemented'
     delete:
       tags:
-        - image_resize
+        - resize
       responses:
         501:
           description: Not implemented
@@ -143,12 +143,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/NotImplemented'
-  /image/image_grayscale:
+  /image/grayscale:
     description: Makes an image grayscale
     post:
       description: Takes an image returns the image in grayscale
       tags:
-        - image_grayscale
+        - grayscale
       requestBody:
         required: true
         content:
@@ -231,7 +231,7 @@ paths:
                   message: "There was an internal server error"
     get:
       tags:
-        - image_grayscale
+        - grayscale
       responses:
         501:
           description: Not implemented
@@ -241,7 +241,7 @@ paths:
                 $ref: '#/components/NotImplemented'
     put:
       tags:
-        - image_grayscale
+        - grayscale
       responses:
         501:
           description: Not implemented
@@ -251,7 +251,7 @@ paths:
                 $ref: '#/components/NotImplemented'
     patch:
       tags:
-        - image_grayscale
+        - grayscale
       responses:
         501:
           description: Not implemented
@@ -261,7 +261,7 @@ paths:
                 $ref: '#/components/NotImplemented'
     delete:
       tags:
-        - image_grayscale
+        - grayscale
       responses:
         501:
           description: Not implemented
@@ -269,12 +269,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/NotImplemented'
-  /image/image_transformation:
+  /image/transformation:
     description: Transforms an image
     post:
       description: Takes an image with a transformation type and parameters on how to conduct that transformation and returns an image based on those specifications
       tags:
-        - image_transformation
+        - transformation
       requestBody:
         required: true
         content:
@@ -362,7 +362,7 @@ paths:
                   message: "There was an internal server error"
     get:
       tags:
-        - image_transformation
+        - transformation
       responses:
         501:
           description: Not implemented
@@ -372,7 +372,7 @@ paths:
                 $ref: '#/components/NotImplemented'
     put:
       tags:
-        - image_transformation
+        - transformation
       responses:
         501:
           description: Not implemented
@@ -382,7 +382,7 @@ paths:
                 $ref: '#/components/NotImplemented'
     patch:
       tags:
-        - image_transformation
+        - transformation
       responses:
         501:
           description: Not implemented
@@ -392,7 +392,7 @@ paths:
                 $ref: '#/components/NotImplemented'
     delete:
       tags:
-        - image_transformation
+        - transformation
       responses:
         501:
           description: Not implemented
