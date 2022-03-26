@@ -7,7 +7,7 @@ import { decodeAndStoreImg, encodeToBase64 } from "../../utils/base64-utils";
 
 export function imageGrayScale (req: Request, res: Response) {
     try {
-        const isThereABase64StringVariable = 'base64String' in req.body;
+        const isThereABase64StringVariable = "base64String" in req.body;
         if(!isThereABase64StringVariable) return res.status(400).json({
             success: "false",
             message: errorMessages.base64StringVariableNotFound
@@ -55,7 +55,7 @@ function imageManipulation (
         .grayscale()
         .toFile(outputLocation, () => {
             const responseMessage = encodeToBase64(outputLocation);
-            console.log('The image was successfully grayscaled!');
+            console.log("The image was successfully grayscaled!");
 
             return res.status(200).json({
                 success: true,

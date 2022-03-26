@@ -14,7 +14,7 @@ export function validateRequestIsImg (dataType: string) {
 };
 
 export function validateRequestIsBase64Format (base64String: string) {
-    if (base64String === '' || base64String.trim() === '') return false;
+    if (base64String === "" || base64String.trim() === "") return false;
     
     const isBase64StructuredString = base64StructureRegex.test(base64String);
 

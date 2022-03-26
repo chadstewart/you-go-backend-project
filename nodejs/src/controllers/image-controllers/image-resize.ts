@@ -7,7 +7,7 @@ import { decodeAndStoreImg, encodeToBase64 } from "../../utils/base64-utils";
 
 export function imageResize (req: Request, res: Response) {
     try {
-        const isThereAPercentageVariable = 'percentageScale' in req.body;
+        const isThereAPercentageVariable = "percentageScale" in req.body;
         if(!isThereAPercentageVariable) return res.status(400).json({
             success: "false",
             message: errorMessages.percentageVariableNotFound
@@ -19,7 +19,7 @@ export function imageResize (req: Request, res: Response) {
             message: errorMessages.percentageNotBetween1And99
         });
         
-        const isThereABase64StringVariable = 'base64String' in req.body;
+        const isThereABase64StringVariable = "base64String" in req.body;
         if(!isThereABase64StringVariable) return res.status(400).json({
             success: "false",
             message: errorMessages.base64StringVariableNotFound
@@ -76,11 +76,11 @@ async function imageManipulation(
         return sharp(fileLocation)
             .resize( {
                 width: newWidth,
-                fit: 'contain'
+                fit: "contain"
             })
             .toFile(outputLocation, () => {
                 const responseMessage = encodeToBase64(outputLocation);
-                console.log('The image was successfully resized!');
+                console.log("The image was successfully resized!");
 
                 return res.status(200).json({
                     success: true,

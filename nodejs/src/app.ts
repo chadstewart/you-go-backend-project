@@ -3,8 +3,8 @@ import bodyParser from "body-parser";
 import https from "https";
 import fs from "fs";
 import path from "path";
-import swaggerUi from 'swagger-ui-express';
-import YAML from 'yamljs';
+import swaggerUi from "swagger-ui-express";
+import YAML from "yamljs";
 
 export const app = express();
 
@@ -16,7 +16,7 @@ const swaggerOptions = {
 };
 
 const swaggerDocument = YAML.load(path.join(__dirname, "../api-docs", "api-spec.yaml"));
-app.use('/api-docs', swaggerUi.serve,   swaggerUi.setup(swaggerDocument, swaggerOptions));
+app.use("/api-docs", swaggerUi.serve,   swaggerUi.setup(swaggerDocument, swaggerOptions));
 
 //Initialize Request Data Type
 app.use(express.json());
@@ -27,8 +27,8 @@ import indexRouter from "./routes/index-routes";
 import imageRouter from "./routes/image-routes";
 
 //Use Routers
-app.use('/', indexRouter);
-app.use('/image', imageRouter);
+app.use("/", indexRouter);
+app.use("/image", imageRouter);
 
 //Enable https
 export const secureServer = https.createServer({
