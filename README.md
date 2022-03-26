@@ -66,4 +66,4 @@ You can find a document listing my design decisions [here](./nodejs/design-decis
 
 ### Acknowledgements
 
-Just want to give a quick shout to [zenHorace](https://twitter.com/zenhorace) and [Pawn](https://twitter.com/Elixir_Js) for putting together this project and the community around it!
+Just want to give a quick shout to [zenHorace](https://twitter.com/zenhorace) and [SheidHeda](https://twitter.com/Elixir_Js) for putting together this project and the community around it!
