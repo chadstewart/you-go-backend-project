@@ -8,5 +8,9 @@ export const errorMessages = {
     notImplemented: "This HTTP verb is not implemented",
     transformationSpecsNotFound: "The transformationSpecs variable was not found in the request",
     transformationSpecsIsNotAnObject: "The transformationSpecs variable is not an object",
-    transformationSpecsHasNoValidVariable: "The transformationSpecs object does not have at least one valid variable"
+    transformationSpecsHasNoValidVariable: "The transformationSpecs object does not have at least one valid variable",
+    resizeScaleNotNumber: "The resizeScale variable in transformationSpecs is not a number",
+    rotationNotNumber: "The rotation variable in transformationSpecs is not a number",
+    xAxisFlipNotBoolean: "The xAxisFlip variable in transformationSpecs is not a boolean",
+    yAxisFlipNotBoolean: "The yAxisFlip variable in transformationSpecs is not a boolean"
 };

@@ -21,23 +21,10 @@ export function imageTransformation (req: Request, res: Response) {
 
         const { transformationSpecs } = req.body;
 
-        const isTranformationSpecsAnObject = typeof transformationSpecs === "object";
-        if(!isTranformationSpecsAnObject) return res.status(400).json({
+        const transformationSpecsError = validateTransoformationSpecs(transformationSpecs);
+        if(transformationSpecsError) return res.status(400).json({
             success: "false",
-            message: errorMessages.transformationSpecsIsNotAnObject
-        });
-
-        // { "resizeScale": 40, "rotation": 60, "x-axis-flip": "true", "y-axis-flip": "true" }
-
-        const doesTransformationSpecsHaveOneValidVariable =
-            "resizeScale" in transformationSpecs ||
-            "rotation" in transformationSpecs ||
-            "xAxisFlip" in transformationSpecs ||
-            "yAxisFlip" in transformationSpecs;
-
-        if(!doesTransformationSpecsHaveOneValidVariable) return res.status(400).json({
-            success: "false",
-            message: errorMessages.transformationSpecsHasNoValidVariable
+            message: transformationSpecsError
         });
 
         const { base64String } = req.body;
@@ -86,12 +73,12 @@ interface transformationSpecs {
     yAxisFlip?: boolean;
 };
 
-type atLeastOneTransSpec = RequireAtLeastOne<transformationSpecs>;
+type atLeastOneTransformSpec = RequireAtLeastOne<transformationSpecs>;
 
 function imageManipulation (
         inputLocation: string,
         outputLocation: string,
-        transformationSpecs: atLeastOneTransSpec,
+        transformationSpecs: atLeastOneTransformSpec,
         res: Response
     ) {
     try{
@@ -100,4 +87,45 @@ function imageManipulation (
     } catch (error) {
         throw error;
     }
+};
+
+export function validateTransoformationSpecs (transformationSpecs: atLeastOneTransformSpec) {
+    const isTranformationSpecsAnObject = typeof transformationSpecs === "object";
+    if(!isTranformationSpecsAnObject) return errorMessages.transformationSpecsIsNotAnObject;
+
+    const isAtLeastOneVarialbeInTransformationSpecs =
+        "resizeScale" in transformationSpecs ||
+        "rotation" in transformationSpecs ||
+        "xAxisFlip" in transformationSpecs ||
+        "yAxisFlip" in transformationSpecs;
+    if(!isAtLeastOneVarialbeInTransformationSpecs) return errorMessages.transformationSpecsHasNoValidVariable;
+
+    const isResizeScaleInTransformationSpecs = "resizeScale" in transformationSpecs;
+    if(isResizeScaleInTransformationSpecs) {
+        const isResizeScaleANumber = typeof transformationSpecs.resizeScale === "number";
+        if(!isResizeScaleANumber) return errorMessages.resizeScaleNotNumber;
+    };
+
+    const isRotationInTransformationSpecs = "rotation" in transformationSpecs;
+    if(isRotationInTransformationSpecs) {
+        const isRotationANumber = typeof transformationSpecs.rotation === "number";
+        if(!isRotationANumber) return errorMessages.rotationNotNumber;
+
+    };
+
+    const isXAxisFlipInTransformationSpecs = "xAxisFlip" in transformationSpecs;
+    if(isXAxisFlipInTransformationSpecs) {
+        const isXAxisFlipABoolean = typeof transformationSpecs.xAxisFlip === "boolean";
+        if(!isXAxisFlipABoolean) return errorMessages.xAxisFlipNotBoolean;
+
+    };
+
+    const isYAxisFlipInTransformationSpecs = "yAxisFlip" in transformationSpecs;
+    if(isYAxisFlipInTransformationSpecs) {
+        const isYAxisFlipABoolean = typeof transformationSpecs.yAxisFlip === "boolean";
+        if(!isYAxisFlipABoolean) return errorMessages.yAxisFlipNotBoolean;
+
+    };
+
+    return null;
 };
