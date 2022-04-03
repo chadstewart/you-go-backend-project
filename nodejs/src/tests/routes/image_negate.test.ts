@@ -3,7 +3,7 @@ import { app } from "../../app";
 import requestPayload from "../test-helpers/test-payload";
 import fs from "fs";
 
-describe("Images Blur Route", () => {
+describe("Images Negate Route", () => {
   afterAll(() => {
     fs.rmSync("images", { recursive: true, force: true });
   });
@@ -12,7 +12,7 @@ describe("Images Blur Route", () => {
     const testObject = requestPayload;
   
     const res = await request(app)
-                     .post("/image/blur")
+                     .post("/image/negate")
                      .send(testObject);
 
     const receivedObject = JSON.parse(res.text);
@@ -27,7 +27,7 @@ describe("Images Blur Route", () => {
     testObject.base64String = "dat:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
 
     const res = await request(app)
-                     .post("/image/blur")
+                     .post("/image/negate")
                      .send(testObject);
                      
     expect(res.statusCode).toEqual(400);
@@ -39,7 +39,7 @@ describe("Images Blur Route", () => {
     testObject.base64String = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
 
     const res = await request(app)
-                     .post("/image/blur")
+                     .post("/image/negate")
                      .send(testObject);
                      
     expect(res.statusCode).toEqual(415);
@@ -51,32 +51,32 @@ describe("Images Blur Route", () => {
     delete testObject.base64String;    
 
     const res = await request(app)
-                     .post("/image/blur")
+                     .post("/image/negate")
                      .send(testObject);
 
     expect(res.statusCode).toEqual(400);
   });
 
   it("It should send a 501 status code when using a HTTP GET", async () => {
-    const res = await request(app).get("/image/blur");
+    const res = await request(app).get("/image/negate");
 
     expect(res.statusCode).toEqual(501);
   });
 
   it("It should send a 501 status code when using a HTTP PUT", async () => {
-    const res = await request(app).put("/image/blur");
+    const res = await request(app).put("/image/negate");
 
     expect(res.statusCode).toEqual(501);
   });
 
   it("It should send a 501 status code when using a HTTP PATCH", async () => {
-    const res = await request(app).patch("/image/blur");
+    const res = await request(app).patch("/image/negate");
 
     expect(res.statusCode).toEqual(501);
   });
 
   it("It should send a 501 status code when using a HTTP DELETE", async () => {
-    const res = await request(app).delete("/image/blur");
+    const res = await request(app).delete("/image/negate");
 
     expect(res.statusCode).toEqual(501);
   });

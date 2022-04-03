@@ -3,7 +3,7 @@ import { app } from "../../app";
 import requestPayload from "../test-helpers/test-payload";
 import fs from "fs";
 
-describe("Images Resize Route", () => {
+describe("Images GrayScale Route", () => {
   afterAll(() => {
     fs.rmSync("images", { recursive: true, force: true });
   });

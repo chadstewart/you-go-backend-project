@@ -5,6 +5,7 @@ import { imageResize } from "../controllers/image-controllers/image-resize";
 import { imageGrayScale } from "../controllers/image-controllers/image-grayscale";
 import { imageTransformation } from "../controllers/image-controllers/image-transformation";
 import { imageBlur } from "../controllers/image-controllers/image-blur";
+import { imageNegate } from "../controllers/image-controllers/image-negate";
 
 const router = express.Router();
 
@@ -35,5 +36,12 @@ router.get("/blur", notDefined);
 router.put("/blur", notDefined);
 router.delete("/blur", notDefined);
 router.patch("/blur", notDefined);
+
+router.post("/negate", imageNegate);
+
+router.get("/negate", notDefined);
+router.put("/negate", notDefined);
+router.delete("/negate", notDefined);
+router.patch("/negate", notDefined);
 
 export default router;
