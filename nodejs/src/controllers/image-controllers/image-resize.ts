@@ -60,12 +60,12 @@ export function imageResize (req: Request, res: Response) {
 
 async function imageManipulation(
         percentScale: number,
-        fileLocation: string,
+        inputLocation: string,
         outputLocation: string,
         res: Response
     ) {
     try {
-        const imgWidth = await sharp(fileLocation).metadata()
+        const imgWidth = await sharp(inputLocation).metadata()
         .then(metadata => {
             if(metadata.width) return metadata.width;
             return 0;
@@ -73,7 +73,7 @@ async function imageManipulation(
 
         const newWidth = Math.round(imgWidth * (percentScale / 100));
         
-        return sharp(fileLocation)
+        return sharp(inputLocation)
             .resize( {
                 width: newWidth,
                 fit: "contain"

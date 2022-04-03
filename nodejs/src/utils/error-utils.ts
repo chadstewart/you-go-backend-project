@@ -10,7 +10,9 @@ export const errorMessages = {
     transformationSpecsIsNotAnObject: "The transformationSpecs variable is not an object",
     transformationSpecsHasNoValidVariable: "The transformationSpecs object does not have at least one valid variable",
     resizeScaleNotNumber: "The resizeScale variable in transformationSpecs is not a number",
+    resizeScaleNotBetween1And99: "The resizeScale variable in transformation Specs that was passed is not between 1 and 99",
     rotationNotNumber: "The rotation variable in transformationSpecs is not a number",
+    rotationNotBetween1And359: "The rotation variable in transformationSpecs is not between 1 and 359",
     xAxisFlipNotBoolean: "The xAxisFlip variable in transformationSpecs is not a boolean",
     yAxisFlipNotBoolean: "The yAxisFlip variable in transformationSpecs is not a boolean"
 };

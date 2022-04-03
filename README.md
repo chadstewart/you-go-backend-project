@@ -22,7 +22,7 @@ You can install all dependencies for this app by running the command:
 
     npm i
 
-This is an https server. You'll need a SSL key and certificate to use this which will need to be installed in a folder called `cert`.
+This is an https server. You'll need a SSL key and certificate to use this which will need to be installed in `nodejs/cert`.
 
 ### Running the application
 
@@ -53,8 +53,8 @@ This is a web server which with currently 5 endpoints:
 <ul>
 <li>image/image_resize: Resizes an image between 1% - 99% it's original size. *Completed*</li>
 <li>image/grayscale: Grayscales an image *Completed*</li>
-<li>image/transformation: Transforms an image based on a few parameters *To Be Developed*</li>
-<li>*TBD*</li>
+<li>image/transformation: Transforms an image based on a few parameters *Completed*</li>
+<li>image/blue: Adds a Gaussian Blur to an image *To Be Developed*</li>
 <li>*TBD*</li>
 </ul>
 

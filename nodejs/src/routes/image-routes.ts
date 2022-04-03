@@ -3,6 +3,7 @@ import { notDefined } from "../controllers/not-defined";
 
 import { imageResize } from "../controllers/image-controllers/image-resize";
 import { imageGrayScale } from "../controllers/image-controllers/image-grayscale";
+import { imageTransformation } from "../controllers/image-controllers/image-transformation";
 
 const router = express.Router();
 
@@ -20,7 +21,7 @@ router.put("/grayscale", notDefined);
 router.delete("/grayscale", notDefined);
 router.patch("/grayscale", notDefined);
 
-router.post("/transformation", imageGrayScale);
+router.post("/transformation", imageTransformation);
 
 router.get("/transformation", notDefined);
 router.put("/transformation", notDefined);
