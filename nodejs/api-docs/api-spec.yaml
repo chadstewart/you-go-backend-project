@@ -400,6 +400,259 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/NotImplemented'
+  /image/blur:
+    description: Add a blur to an image
+    post:
+      description: Takes an image returns the image in blur
+      tags:
+        - blur
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - base64String
+              properties:
+                base64String:
+                  type: string
+                  description: The image as a base64 string
+              example:
+                base64String: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+      responses:
+        200:
+          description: Success Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Whether the response was a success or not
+                  message:
+                    type: string
+                    description: Content of the response
+                example:
+                  success: true
+                  message: "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+
+        400:
+          description: This is not a properly formatted base64 image
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Whether the response was a success or not
+                  message:
+                    type: string
+                    description: Content of the response
+                example:
+                  success: false
+                  message: "This is not a properly formatted base64 image"
+        415:
+          description: Please send an image that is .jpg, .jpeg, .jpe or .png
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Whether the response was a success or not
+                  message:
+                    type: string
+                    description: Content of the response
+                example:
+                  success: false
+                  message: "Please send an image that is .jpg, .jpeg, .jpe or .png"
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Whether the response was a success or not
+                  message:
+                    type: string
+                    description: Content of the response
+                example:
+                  success: false
+                  message: "There was an internal server error"
+    get:
+      tags:
+        - blur
+      responses:
+        501:
+          description: Not implemented
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/NotImplemented'
+    put:
+      tags:
+        - blur
+      responses:
+        501:
+          description: Not implemented
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/NotImplemented'
+    patch:
+      tags:
+        - blur
+      responses:
+        501:
+          description: Not implemented
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/NotImplemented'
+    delete:
+      tags:
+        - blur
+      responses:
+        501:
+          description: Not implemented
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/NotImplemented'
+  /image/negate:
+    description: Negates the colors of an image
+    post:
+      description: Takes an image returns the image in negate
+      tags:
+        - negate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - base64String
+              properties:
+                base64String:
+                  type: string
+                  description: The image as a base64 string
+              example:
+                base64String: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+      responses:
+        200:
+          description: Success Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Whether the response was a success or not
+                  message:
+                    type: string
+                    description: Content of the response
+                example:
+                  success: true
+                  message: "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+
+        400:
+          description: This is not a properly formatted base64 image
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Whether the response was a success or not
+                  message:
+                    type: string
+                    description: Content of the response
+                example:
+                  success: false
+                  message: "This is not a properly formatted base64 image"
+        415:
+          description: Please send an image that is .jpg, .jpeg, .jpe or .png
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Whether the response was a success or not
+                  message:
+                    type: string
+                    description: Content of the response
+                example:
+                  success: false
+                  message: "Please send an image that is .jpg, .jpeg, .jpe or .png"
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Whether the response was a success or not
+                  message:
+                    type: string
+                    description: Content of the response
+                example:
+                  success: false
+                  message: "There was an internal server error"
+    get:
+      tags:
+        - negate
+      responses:
+        501:
+          description: Not implemented
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/NotImplemented'
+    put:
+      tags:
+        - negate
+      responses:
+        501:
+          description: Not implemented
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/NotImplemented'
+    patch:
+      tags:
+        - negate
+      responses:
+        501:
+          description: Not implemented
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/NotImplemented'
+    delete:
+      tags:
+        - negate
+      responses:
+        501:
+          description: Not implemented
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/NotImplemented'
+
 components:
   NotImplemented:
     type: object

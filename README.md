@@ -51,11 +51,11 @@ You can view the Swagger Documentation for the API by starting the application u
 This is a web server which with currently 5 endpoints:
 
 <ul>
-<li>image/image_resize: Resizes an image between 1% - 99% it's original size. *Completed*</li>
-<li>image/grayscale: Grayscales an image *Completed*</li>
-<li>image/transformation: Transforms an image based on a few parameters *Completed*</li>
-<li>image/blur: Adds a Gaussian Blur to an image *Completed*</li>
-<li>*TBD*</li>
+<li>image/image_resize: Resizes an image between 1% - 99% it's original size.</li>
+<li>image/grayscale: Grayscales an image</li>
+<li>image/transformation: Transforms an image based on a few parameters</li>
+<li>image/blur: Adds a Gaussian Blur to an image *To be tested*</li>
+<li>image/negate: Negates all the colors of an image.</li>
 </ul>
 
 The server will accept post requests with images in base64 and only accepts image/jpeg and image/png files currently. All other files and requests will be rejected.

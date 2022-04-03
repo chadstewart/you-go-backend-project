@@ -16,6 +16,12 @@ I chose to split the endpoints rather than have a single image endpoint. I perso
 <li>Image Resize: I decided that I would only allow the image to be compressed to 1% - 99% of it's original size. The blood oath I took when I attended art school forbids me to allow anyone to purposefully create a pixelated image. I decided to create an image manipulation function for the stuff with sharp. The original idea was that it would have all the image manipulation related functionality and you'd just pass the relevant information but just building this function out seems like tha's way too complicated of a task. I'll have to reassess how I think about doing image manipulation. I'll also likely do this for every other endpoint</li>
 <li>Image Grayscale: Not much to say about this honestly. It's very similar to Image Resize except taking out the resize specific parts.
 </li>
+<li>Image Transformation: So I decided that image transformation would allow you to do up to 4 different manipulations on an image. The manipulations do not rely on another being done to be done and you don't need to do all 4 at once. The end point will do the manipulations specified and will ignore manipulations that aren't. To deliver the specifications, I made the user make an object with the specific manipulations specified. There are specific validations on each manipulations which the end points will give you an error on if you don't do them properly. The validations right now only exist in the end point file since I figured this end point would be the only place that does this validation. I am explorting it though so that it can be tested properly.
+</li>
+<li>Image Blur: Not much to say about this honestly. It's very similar to Image Resize except taking out the resize specific parts.
+</li>
+<li>Image Negate: Not much to say about this honestly. It's very similar to Image Resize except taking out the resize specific parts. (Noticed this was copied and pasted yet? =P)
+</li>
 </ul>
 
 ## Image Upload
