@@ -282,7 +282,7 @@ paths:
             schema:
               type: object
               required:
-                - transformation-specs
+                - transformationSpecs
                 - base64String
               properties:
                 transformation-specs:
@@ -292,7 +292,7 @@ paths:
                   type: string
                   description: The image as a base64 string
               example:
-                transformation-specs: { "resizeScale": 40, "rotation": 60, "x-axis-flip": "true", "y-axis-flip": "true" }
+                transformationSpecs: { "resizeScale": 40, "rotation": 60, "xAxisFlip": "true", "yAxisFlip": "true" }
                 base64String: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
       responses:
         200:

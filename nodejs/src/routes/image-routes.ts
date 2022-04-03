@@ -20,4 +20,11 @@ router.put("/grayscale", notDefined);
 router.delete("/grayscale", notDefined);
 router.patch("/grayscale", notDefined);
 
+router.post("/transformation", imageGrayScale);
+
+router.get("/transformation", notDefined);
+router.put("/transformation", notDefined);
+router.delete("/transformation", notDefined);
+router.patch("/transformation", notDefined);
+
 export default router;
