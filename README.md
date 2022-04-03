@@ -54,7 +54,7 @@ This is a web server which with currently 5 endpoints:
 <li>image/image_resize: Resizes an image between 1% - 99% it's original size. *Completed*</li>
 <li>image/grayscale: Grayscales an image *Completed*</li>
 <li>image/transformation: Transforms an image based on a few parameters *Completed*</li>
-<li>image/blue: Adds a Gaussian Blur to an image *To Be Developed*</li>
+<li>image/blur: Adds a Gaussian Blur to an image *Completed*</li>
 <li>*TBD*</li>
 </ul>
 
