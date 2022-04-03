@@ -9,35 +9,35 @@ import { imageNegate } from "../controllers/image-controllers/image-negate";
 
 const router = express.Router();
 
+//Working Endpoints
+
 router.post("/resize", imageResize);
+router.post("/grayscale", imageGrayScale);
+router.post("/transformation", imageTransformation);
+router.post("/blur", imageBlur);
+router.post("/negate", imageNegate);
+
+//Endpoints not implemented
 
 router.get("/resize", notDefined);
 router.put("/resize", notDefined);
 router.delete("/resize", notDefined);
 router.patch("/resize", notDefined);
 
-router.post("/grayscale", imageGrayScale);
-
 router.get("/grayscale", notDefined);
 router.put("/grayscale", notDefined);
 router.delete("/grayscale", notDefined);
 router.patch("/grayscale", notDefined);
-
-router.post("/transformation", imageTransformation);
 
 router.get("/transformation", notDefined);
 router.put("/transformation", notDefined);
 router.delete("/transformation", notDefined);
 router.patch("/transformation", notDefined);
 
-router.post("/blur", imageBlur);
-
 router.get("/blur", notDefined);
 router.put("/blur", notDefined);
 router.delete("/blur", notDefined);
 router.patch("/blur", notDefined);
-
-router.post("/negate", imageNegate);
 
 router.get("/negate", notDefined);
 router.put("/negate", notDefined);
