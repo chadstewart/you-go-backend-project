@@ -3,6 +3,8 @@
 
 This is an app written by [Chad Stewart](https://www.github.com/ChadStewart) for the [YouGo](https://www.github.com/YouGoDevs/YouGo-Backend-Track) practice project.
 
+This project was to complete [part 0](https://github.com/YouGoDevs/YouGo-Backend-Track/blob/main/Project-0.md#part-0-the-agreement) of the practice project.
+
 ### Technologies Used:
 
 <ul>
