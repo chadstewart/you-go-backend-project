@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Image manipulation API
-  description: API that takes an image and returns a manipulated image based on user request by Chad R. Stewart
+  description: API that takes an image and returns a manipulated image based on user request by Chad R. Stewart *Note that the base64 images in the examples is dummy data for show. You'll need to find your own base64 image string.
   contact:
     name: Chad R. Stewart
     url: https://wwww.twitter.com/Chad_R_Stewart
