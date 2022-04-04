@@ -17,7 +17,7 @@ router.post("/transformation", imageTransformation);
 router.post("/blur", imageBlur);
 router.post("/negate", imageNegate);
 
-//Endpoints not implemented
+//Endpoint verbs not implemented
 
 router.get("/resize", notDefined);
 router.put("/resize", notDefined);

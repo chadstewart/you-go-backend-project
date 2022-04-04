@@ -1,5 +1,5 @@
 import { validateRequestIsBase64Format, validateRequestIsImg } from "../../utils/validation-utils";
-import requestPayload from "../test-helpers/test-payload";
+import { resizeRequestPayload } from "../test-helpers/test-payload";
 
 describe("validateRequestIsImg Utility", () => {
     it("It should return true when given a corrent string containing an image type", () => {
@@ -23,8 +23,8 @@ describe("validateRequestIsImg Utility", () => {
 
 describe("validateRequestIsBase64Format Utility", () => {
     it("It should return true if given a valid properly formatted base64 string", () => {
-        if(!requestPayload.base64String) return;
-        const testString = requestPayload.base64String;
+        if(!resizeRequestPayload.base64String) return;
+        const testString = resizeRequestPayload.base64String;
 
         expect(validateRequestIsBase64Format(testString)).toBeTruthy();
     });

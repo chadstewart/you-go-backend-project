@@ -1,6 +1,6 @@
 import request from "supertest";
 import { app } from "../../app";
-import requestPayload from "../test-helpers/test-payload";
+import { resizeRequestPayload } from "../test-helpers/test-payload";
 import fs from "fs";
 
 describe("Images Resize Route", () => {
@@ -9,7 +9,7 @@ describe("Images Resize Route", () => {
   });
 
   it("It should send a 200 status code with a json payload with a proper request", async () => {
-    const testObject = requestPayload;
+    const testObject = resizeRequestPayload;
   
     const res = await request(app)
                      .post("/image/resize")
@@ -22,7 +22,7 @@ describe("Images Resize Route", () => {
   });
 
   it("It should send a 400 status code when the base64 string isn\"t properly formatted", async () => {
-    const testObject = requestPayload;
+    const testObject = resizeRequestPayload;
   
     testObject.base64String = "dat:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
 
@@ -34,7 +34,7 @@ describe("Images Resize Route", () => {
   });
 
   it("It should send a 415 status code when the wrong data type is used", async () => {
-    const testObject = requestPayload;
+    const testObject = resizeRequestPayload;
   
     testObject.base64String = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
 
@@ -46,7 +46,7 @@ describe("Images Resize Route", () => {
   });
 
   it("It should send a 400 status code when percentageScale is bigger than 99", async () => {
-    const testObject = requestPayload;
+    const testObject = resizeRequestPayload;
   
     testObject.percentageScale = 100;
 
@@ -60,7 +60,7 @@ describe("Images Resize Route", () => {
 
 
   it("It should send a 400 status code when percentageScale is smaller than 1", async () => {
-    const testObject = requestPayload;
+    const testObject = resizeRequestPayload;
   
     testObject.percentageScale = 0;
 
@@ -72,7 +72,7 @@ describe("Images Resize Route", () => {
   });
 
   it("It should send a 400 status code when missing percentageScale", async () => {
-    const testObject = requestPayload;
+    const testObject = resizeRequestPayload;
   
     delete testObject.percentageScale;
 
@@ -84,7 +84,7 @@ describe("Images Resize Route", () => {
   });
 
   it("It should send a 400 status code when missing base64String", async () => {
-    const testObject = requestPayload;
+    const testObject = resizeRequestPayload;
   
     delete testObject.base64String;    
 
