@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npx tsc --project tsconfig.build.json && node dist/secure-server",
+    "start": "npm run build && node dist/secure-server",
     "dev": "nodemon src/secure-server.ts",
     "build": "npx tsc --project tsconfig.build.json",
     "test": "jest --coverage",
