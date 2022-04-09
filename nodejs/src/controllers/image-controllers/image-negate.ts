@@ -59,7 +59,7 @@ async function imageManipulation (
         // if(isThereNoImageFolder) fs.mkdirSync("images");
 
         const manipedImg = sharp(imageBuffer).negate();
-        const { data: manipedImgBuffer } = await manipedImg.toBuffer({ resolveWithObject: true });
+        const manipedImgBuffer = await manipedImg.toBuffer();
         
         //manipedImg.toFile(outputLocation, () => console.log("The image was successfully negated!"));
 

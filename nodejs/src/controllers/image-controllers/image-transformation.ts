@@ -124,7 +124,7 @@ async function imageManipulation (
             imgToTransform = imgToTransform.flop();
         };
 
-        const { data: manipedImgBuffer } = await imgToTransform.toBuffer({ resolveWithObject: true });
+        const manipedImgBuffer = await imgToTransform.toBuffer();
 
         //imgToTransform.toFile(outputLocation, () => console.log("The image was successfully transformed!"));
 

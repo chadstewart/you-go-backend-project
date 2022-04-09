@@ -85,7 +85,7 @@ async function imageManipulation(
                 fit: "contain"
             });
 
-            const { data: manipedImgBuffer } = await manipedImg.toBuffer({ resolveWithObject: true });
+            const manipedImgBuffer = await manipedImg.toBuffer();
             
             //manipedImg.toFile(outputLocation, () => console.log("The image was successfully negated!"));
     
