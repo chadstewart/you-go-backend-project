@@ -1,10 +1,10 @@
 openapi: 3.0.0
 info:
   title: Image manipulation API
-  description: API that takes an image and returns a manipulated image based on user request by Chad R. Stewart *Note that the base64 images in the examples is dummy data for show. You'll need to find your own base64 image string.
+  description: API that takes a png or jpeg image in base64 and returns a manipulated image based on user request by Chad R. Stewart *Note that the base64 images in the examples is dummy data for show. You'll need to find your own base64 image string.
   contact:
     name: Chad R. Stewart
-    url: https://wwww.twitter.com/Chad_R_Stewart
+    url: https://www.twitter.com/Chad_R_Stewart
   version: 1.0.0
 servers:
   - url: https://localhost:3000
@@ -33,7 +33,7 @@ paths:
                   description: The image as a base64 string
               example:
                 percentageScale: 40
-                base64String: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+                base64String: data:image/jpeg;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
       responses:
         200:
           description: Success Response
@@ -50,7 +50,7 @@ paths:
                     description: Content of the response
                 example:
                   success: true
-                  message: "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  message: "data:image/jpeg;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
 
         400:
           description: This is not a properly formatted base64 image
@@ -159,7 +159,7 @@ paths:
                   type: string
                   description: The image as a base64 string
               example:
-                base64String: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+                base64String: data:image/jpeg;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
       responses:
         200:
           description: Success Response
@@ -176,7 +176,7 @@ paths:
                     description: Content of the response
                 example:
                   success: true
-                  message: "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  message: "data:image/jpeg;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
 
         400:
           description: This is not a properly formatted base64 image
@@ -290,7 +290,7 @@ paths:
                   description: The image as a base64 string
               example:
                 transformationSpecs: { "resizeScale": 40, "rotation": 60, "xAxisFlip": "true", "yAxisFlip": "true" }
-                base64String: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+                base64String: data:image/jpeg;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
       responses:
         200:
           description: Success Response
@@ -307,7 +307,7 @@ paths:
                     description: Content of the response
                 example:
                   success: true
-                  message: "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  message: "data:image/jpeg;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
 
         400:
           description: This is not a properly formatted base64 image
@@ -416,7 +416,7 @@ paths:
                   type: string
                   description: The image as a base64 string
               example:
-                base64String: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+                base64String: data:image/jpeg;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
       responses:
         200:
           description: Success Response
@@ -433,7 +433,7 @@ paths:
                     description: Content of the response
                 example:
                   success: true
-                  message: "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  message: "data:image/jpeg;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
 
         400:
           description: This is not a properly formatted base64 image
@@ -542,7 +542,7 @@ paths:
                   type: string
                   description: The image as a base64 string
               example:
-                base64String: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+                base64String: data:image/jpeg;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
       responses:
         200:
           description: Success Response
@@ -559,7 +559,7 @@ paths:
                     description: Content of the response
                 example:
                   success: true
-                  message: "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  message: "data:image/jpeg;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
 
         400:
           description: This is not a properly formatted base64 image
