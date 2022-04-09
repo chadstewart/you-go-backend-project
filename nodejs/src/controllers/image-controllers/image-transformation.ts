@@ -126,7 +126,7 @@ async function imageManipulation (
 
         const { data: manipedImgBuffer } = await imgToTransform.toBuffer({ resolveWithObject: true });
 
-        imgToTransform.toFile(outputLocation, () => console.log("The image was successfully transformed!"));
+        //imgToTransform.toFile(outputLocation, () => console.log("The image was successfully transformed!"));
 
         const base64Img = encodeToBase64(manipedImgBuffer);
 

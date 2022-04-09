@@ -61,7 +61,7 @@ async function imageManipulation (
         const manipedImg = sharp(imageBuffer).blur(1);
         const { data: manipedImgBuffer } = await manipedImg.toBuffer({ resolveWithObject: true });
         
-        manipedImg.toFile(outputLocation, () => console.log("The image was successfully blurred!"));
+        //manipedImg.toFile(outputLocation, () => console.log("The image was successfully blurred!"));
 
         const base64Img = encodeToBase64(manipedImgBuffer);
 

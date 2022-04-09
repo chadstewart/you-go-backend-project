@@ -61,7 +61,7 @@ async function imageManipulation (
         const manipedImg = sharp(imageBuffer).negate();
         const { data: manipedImgBuffer } = await manipedImg.toBuffer({ resolveWithObject: true });
         
-        manipedImg.toFile(outputLocation, () => console.log("The image was successfully negated!"));
+        //manipedImg.toFile(outputLocation, () => console.log("The image was successfully negated!"));
 
         const base64Img = encodeToBase64(manipedImgBuffer);
 

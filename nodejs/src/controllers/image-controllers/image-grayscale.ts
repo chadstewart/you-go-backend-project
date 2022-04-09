@@ -61,7 +61,7 @@ async function imageManipulation (
         const manipedImg = sharp(imageBuffer).grayscale();
         const { data: manipedImgBuffer } = await manipedImg.toBuffer({ resolveWithObject: true });
         
-        manipedImg.toFile(outputLocation, () => console.log("The image was successfully grayscaled!"));
+        //manipedImg.toFile(outputLocation, () => console.log("The image was successfully grayscaled!"));
 
         const base64Img = encodeToBase64(manipedImgBuffer);
 
