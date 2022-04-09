@@ -68,8 +68,8 @@ async function imageManipulation(
         outputLocation: string
     ) {
     try {
-        const isThereNoImageFolder = !fs.existsSync("images");
-        if(isThereNoImageFolder) fs.mkdirSync("images");
+        // const isThereNoImageFolder = !fs.existsSync("images");
+        // if(isThereNoImageFolder) fs.mkdirSync("images");
 
         const imgWidth = await sharp(imageBuffer).metadata()
         .then(metadata => {

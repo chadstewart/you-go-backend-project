@@ -86,8 +86,8 @@ async function imageManipulation (
         transformationSpecs: atLeastOneTransformSpec
     ) {
     try{
-        const isThereNoImageFolder = !fs.existsSync("images");
-        if(isThereNoImageFolder) fs.mkdirSync("images");
+        // const isThereNoImageFolder = !fs.existsSync("images");
+        // if(isThereNoImageFolder) fs.mkdirSync("images");
         
         let imgToTransform = sharp(imageBuffer);
 

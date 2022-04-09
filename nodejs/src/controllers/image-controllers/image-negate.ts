@@ -55,8 +55,8 @@ async function imageManipulation (
         outputLocation: string
     ) {
     try{
-        const isThereNoImageFolder = !fs.existsSync("images");
-        if(isThereNoImageFolder) fs.mkdirSync("images");
+        // const isThereNoImageFolder = !fs.existsSync("images");
+        // if(isThereNoImageFolder) fs.mkdirSync("images");
 
         const manipedImg = sharp(imageBuffer).negate();
         const { data: manipedImgBuffer } = await manipedImg.toBuffer({ resolveWithObject: true });
