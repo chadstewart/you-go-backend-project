@@ -1,4 +1,4 @@
-import { extractInfoFromBase64String, decodeAndStoreImg } from "../../utils/base64-utils";
+import { extractInfoFromBase64String, decodeImg } from "../../utils/base64-utils";
 import { base64StructureRegex } from "../../utils/validation-utils";
 import { resizeRequestPayload } from "../test-helpers/test-payload";
 import fs from "fs";
@@ -19,17 +19,11 @@ describe("extractInfoFromBase64String", () => {
 });
 
 describe("decodeAndStoreImg", () => {
-    afterAll(() => {
-      fs.rmSync("images", { recursive: true, force: true });
-    });
-
-    it("It should return a string and that string correspond to a file address that was recently created", async () => {
+    it("It should return an image buffer", () => {
         const matches = resizeRequestPayload.base64String?.match(base64StructureRegex);
 
         if(!matches) return;
-        const testLocation = await decodeAndStoreImg(matches);
-        const isThereAFileHere = fs.existsSync(testLocation);
-
-        expect(isThereAFileHere).toBeTruthy();
+        const testBuffer = decodeImg(matches);
+        expect(testBuffer).toEqual(expect.any(Buffer));
     });
 });

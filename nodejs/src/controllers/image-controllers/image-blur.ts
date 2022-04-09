@@ -1,9 +1,10 @@
 import path from "path";
 import sharp from "sharp";
+import fs from "fs";
 import { Request, Response } from "express";
 import { errorMessages } from "../../utils/error-utils";
 import { prepareBase64ImageData } from "../../utils/prepare-base64-image-data";
-import { decodeAndStoreImg, encodeToBase64 } from "../../utils/base64-utils";
+import { decodeImg, encodeToBase64 } from "../../utils/base64-utils";
 
 export function imageBlur (req: Request, res: Response) {
     try {
@@ -24,15 +25,15 @@ export function imageBlur (req: Request, res: Response) {
             message: matchesOrError
         });
         
-        const inputLocation = decodeAndStoreImg(matchesOrError);
+        const imageBuffer = decodeImg(matchesOrError);
         
         const filesLocation = {
-            inputLocation,
+            imageBuffer,
             sendFileLocation: path.join(__dirname, `../../../`, `images/output-${Date.now()}.jpg`)
         };
 
         imageManipulation(
-            filesLocation.inputLocation,
+            filesLocation.imageBuffer,
             filesLocation.sendFileLocation,
             res
         );
@@ -46,16 +47,19 @@ export function imageBlur (req: Request, res: Response) {
 };
 
 function imageManipulation (
-        inputLocation: string,
+        imageBuffer: Buffer,
         outputLocation: string,
         res: Response
     ) {
     try{
-        sharp(inputLocation)
+        const isThereNoImageFolder = !fs.existsSync("images");
+        if(isThereNoImageFolder) fs.mkdirSync("images");
+
+        sharp(imageBuffer)
         .blur(1)
         .toFile(outputLocation, () => {
             const responseMessage = encodeToBase64(outputLocation);
-            console.log("The image was successfully grayscaled!");
+            console.log("The image was successfully blurred!");
 
             return res.status(200).json({
                 success: true,

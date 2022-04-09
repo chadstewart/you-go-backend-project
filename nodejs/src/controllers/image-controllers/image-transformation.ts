@@ -1,9 +1,10 @@
 import path from "path";
 import sharp from "sharp";
+import fs from "fs";
 import { Request, Response } from "express";
 import { errorMessages } from "../../utils/error-utils";
 import { prepareBase64ImageData } from "../../utils/prepare-base64-image-data";
-import { decodeAndStoreImg, encodeToBase64 } from "../../utils/base64-utils";
+import { decodeImg, encodeToBase64 } from "../../utils/base64-utils";
 
 export function imageTransformation (req: Request, res: Response) {
     try {
@@ -38,15 +39,15 @@ export function imageTransformation (req: Request, res: Response) {
             message: matchesOrError
         });
         
-        const inputLocation = decodeAndStoreImg(matchesOrError);
+        const imageBuffer = decodeImg(matchesOrError);
         
         const filesLocation = {
-            inputLocation,
+            imageBuffer,
             sendFileLocation: path.join(__dirname, `../../../`, `images/output-${Date.now()}.jpg`)
         };
 
         imageManipulation(
-            filesLocation.inputLocation,
+            filesLocation.imageBuffer,
             filesLocation.sendFileLocation,
             transformationSpecs,
             res
@@ -76,17 +77,20 @@ interface transformationSpecs {
 type atLeastOneTransformSpec = RequireAtLeastOne<transformationSpecs>;
 
 async function imageManipulation (
-        inputLocation: string,
+        imageBuffer: Buffer,
         outputLocation: string,
         transformationSpecs: atLeastOneTransformSpec,
         res: Response
     ) {
     try{
-        let imgToTransform = sharp(inputLocation);
+        const isThereNoImageFolder = !fs.existsSync("images");
+        if(isThereNoImageFolder) fs.mkdirSync("images");
+        
+        let imgToTransform = sharp(imageBuffer);
 
         const isResizeScaleInTransformationSpecs = "resizeScale" in transformationSpecs;
         if(isResizeScaleInTransformationSpecs && transformationSpecs.resizeScale) {
-            const imgWidth = await sharp(inputLocation).metadata()
+            const imgWidth = await sharp(imageBuffer).metadata()
             .then(metadata => {
                 if(metadata.width) return metadata.width;
                 return 0;

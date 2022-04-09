@@ -8,7 +8,7 @@ export function extractInfoFromBase64String (base64String: string) {
     return [""];
 };
 
-export function decodeAndStoreImg(matches: RegExpMatchArray) {
+export function decodeImg(matches: RegExpMatchArray) {
     const response = {
         type: matches[1],
         data: Buffer.from(matches[2], "base64")
@@ -16,20 +16,7 @@ export function decodeAndStoreImg(matches: RegExpMatchArray) {
 
     const decodedImg = response;
     const imageBuffer = decodedImg.data;
-    const type = decodedImg.type;
-    const extension = mime.extension(type);
-    const fileName = `image-${Date.now()}.${extension}`;
-    const fileLocation = `images/${fileName}`;
-    
-    try {
-        const isThereNoImageFolder = !fs.existsSync("images");
-        if(isThereNoImageFolder) fs.mkdirSync("images");
-        fs.writeFileSync(fileLocation, imageBuffer, "utf8");
-        console.log("The image was successfully uploaded!" );
-        return fileLocation;
-    } catch (error) {
-        throw error;
-    }
+    return imageBuffer;
 }
 
 export function encodeToBase64 (imageURL: string) {

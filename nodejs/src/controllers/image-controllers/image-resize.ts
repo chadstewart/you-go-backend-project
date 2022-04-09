@@ -1,9 +1,10 @@
 import path from "path";
 import sharp from "sharp";
+import fs from "fs";
 import { Request, Response } from "express";
 import { errorMessages } from "../../utils/error-utils";
 import { prepareBase64ImageData } from "../../utils/prepare-base64-image-data";
-import { decodeAndStoreImg, encodeToBase64 } from "../../utils/base64-utils";
+import { decodeImg, encodeToBase64 } from "../../utils/base64-utils";
 
 export function imageResize (req: Request, res: Response) {
     try {
@@ -36,16 +37,16 @@ export function imageResize (req: Request, res: Response) {
             message: matchesOrError
         });
         
-        const inputLocation = decodeAndStoreImg(matchesOrError);
+        const imageBuffer = decodeImg(matchesOrError);
         
         const filesLocation = {
-            inputLocation,
+            imageBuffer,
             sendFileLocation: path.join(__dirname, `../../../`, `images/output-${Date.now()}.jpg`)
         };
         
         imageManipulation(
             percentageScale,
-            filesLocation.inputLocation,
+            filesLocation.imageBuffer,
             filesLocation.sendFileLocation,
             res
         );
@@ -60,12 +61,15 @@ export function imageResize (req: Request, res: Response) {
 
 async function imageManipulation(
         percentScale: number,
-        inputLocation: string,
+        imageBuffer: Buffer,
         outputLocation: string,
         res: Response
     ) {
     try {
-        const imgWidth = await sharp(inputLocation).metadata()
+        const isThereNoImageFolder = !fs.existsSync("images");
+        if(isThereNoImageFolder) fs.mkdirSync("images");
+
+        const imgWidth = await sharp(imageBuffer).metadata()
         .then(metadata => {
             if(metadata.width) return metadata.width;
             return 0;
@@ -73,7 +77,7 @@ async function imageManipulation(
 
         const newWidth = Math.round(imgWidth * (percentScale / 100));
         
-        return sharp(inputLocation)
+        return sharp(imageBuffer)
             .resize( {
                 width: newWidth,
                 fit: "contain"
