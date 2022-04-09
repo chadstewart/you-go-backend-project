@@ -1,9 +1,9 @@
-import { secureServer } from "./app";
+import { app } from "./app";
 
-const port = 3000;
-secureServer.listen(port, () => console.log(
-`Navigate to https://localhost:${port} to view server
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(
+`Server is live on ${port}
 
-View the API Endpoint documentation here: https://localhost:${port}/api-docs
+View the API Endpoint documentation by going to /api-docs
 `
 ));

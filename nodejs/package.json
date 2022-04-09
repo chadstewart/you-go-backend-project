@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npx tsc && node dist/server",
-    "dev": "nodemon src/server.ts",
-    "compile": "npx tsc",
+    "start": "npx tsc --project tsconfig.build.json && node dist/secure-server",
+    "dev": "nodemon src/secure-server.ts",
+    "build": "npx tsc --project tsconfig.build.json",
     "test": "jest --coverage",
     "test:watch": "jest --watch"
   },
