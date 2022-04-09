@@ -1,5 +1,4 @@
 import { base64StructureRegex } from "./validation-utils";
-import mime from "mime";
 import fs from "fs";
 
 export function extractInfoFromBase64String (base64String: string) {
@@ -19,6 +18,6 @@ export function decodeImg(matches: RegExpMatchArray) {
     return imageBuffer;
 }
 
-export function encodeToBase64 (imageURL: string) {
-    return "data:image/jpeg;base64," + fs.readFileSync(imageURL, "base64");
+export function encodeToBase64 (imageBuffer: Buffer) {
+    return "data:image/jpeg;base64," + imageBuffer.toString("base64");
 };

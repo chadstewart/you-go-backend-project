@@ -6,7 +6,7 @@ import { errorMessages } from "../../utils/error-utils";
 import { prepareBase64ImageData } from "../../utils/prepare-base64-image-data";
 import { decodeImg, encodeToBase64 } from "../../utils/base64-utils";
 
-export function imageGrayScale (req: Request, res: Response) {
+export async function imageGrayScale (req: Request, res: Response) {
     try {
         const isThereABase64StringVariable = "base64String" in req.body;
         if(!isThereABase64StringVariable) return res.status(400).json({
@@ -32,11 +32,15 @@ export function imageGrayScale (req: Request, res: Response) {
             sendFileLocation: path.join(__dirname, `../../../`, `images/output-${Date.now()}.jpg`)
         };
 
-        imageManipulation(
+        const manipedImg = await imageManipulation(
             filesLocation.imageBuffer,
-            filesLocation.sendFileLocation,
-            res
+            filesLocation.sendFileLocation
         );
+
+        return res.status(200).json({
+            success: "true",
+            message: manipedImg
+        });
     } catch (error) {
         console.log(error);
         return res.status(500).json({
@@ -46,27 +50,22 @@ export function imageGrayScale (req: Request, res: Response) {
     }
 };
 
-function imageManipulation (
+async function imageManipulation (
         imageBuffer: Buffer,
-        outputLocation: string,
-        res: Response
+        outputLocation: string
     ) {
     try{
         const isThereNoImageFolder = !fs.existsSync("images");
         if(isThereNoImageFolder) fs.mkdirSync("images");
 
-        const manipedImg = sharp(imageBuffer)
-        .grayscale()
+        const manipedImg = sharp(imageBuffer).grayscale();
+        const { data: manipedImgBuffer } = await manipedImg.toBuffer({ resolveWithObject: true });
         
-        manipedImg.toFile(outputLocation, () => {
-            const responseMessage = encodeToBase64(outputLocation);
-            console.log("The image was successfully grayscaled!");
+        manipedImg.toFile(outputLocation, () => console.log("The image was successfully grayscaled!"));
 
-            return res.status(200).json({
-                success: true,
-                message: responseMessage
-            });
-        });
+        const base64Img = encodeToBase64(manipedImgBuffer);
+
+        return base64Img;
     } catch (error) {
         throw error;
     }

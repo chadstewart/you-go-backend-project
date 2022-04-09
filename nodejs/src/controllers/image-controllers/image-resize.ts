@@ -6,7 +6,7 @@ import { errorMessages } from "../../utils/error-utils";
 import { prepareBase64ImageData } from "../../utils/prepare-base64-image-data";
 import { decodeImg, encodeToBase64 } from "../../utils/base64-utils";
 
-export function imageResize (req: Request, res: Response) {
+export async function imageResize (req: Request, res: Response) {
     try {
         const isThereAPercentageVariable = "percentageScale" in req.body;
         if(!isThereAPercentageVariable) return res.status(400).json({
@@ -44,12 +44,15 @@ export function imageResize (req: Request, res: Response) {
             sendFileLocation: path.join(__dirname, `../../../`, `images/output-${Date.now()}.jpg`)
         };
         
-        imageManipulation(
+        const manipedImg = await imageManipulation(
             percentageScale,
             filesLocation.imageBuffer,
-            filesLocation.sendFileLocation,
-            res
+            filesLocation.sendFileLocation
         );
+        return res.status(200).json({
+            success: "true",
+            message: manipedImg
+        });
     } catch (error) {
         console.log(error);
         return res.status(500).json({
@@ -62,8 +65,7 @@ export function imageResize (req: Request, res: Response) {
 async function imageManipulation(
         percentScale: number,
         imageBuffer: Buffer,
-        outputLocation: string,
-        res: Response
+        outputLocation: string
     ) {
     try {
         const isThereNoImageFolder = !fs.existsSync("images");
@@ -77,20 +79,19 @@ async function imageManipulation(
 
         const newWidth = Math.round(imgWidth * (percentScale / 100));
         
-        return sharp(imageBuffer)
+        const manipedImg = sharp(imageBuffer)
             .resize( {
                 width: newWidth,
                 fit: "contain"
-            })
-            .toFile(outputLocation, () => {
-                const responseMessage = encodeToBase64(outputLocation);
-                console.log("The image was successfully resized!");
-
-                return res.status(200).json({
-                    success: true,
-                    message: responseMessage
-                });
             });
+
+            const { data: manipedImgBuffer } = await manipedImg.toBuffer({ resolveWithObject: true });
+            
+            manipedImg.toFile(outputLocation, () => console.log("The image was successfully negated!"));
+    
+            const base64Img = encodeToBase64(manipedImgBuffer);
+
+            return base64Img;
     } catch (error) {
         throw error;
     }

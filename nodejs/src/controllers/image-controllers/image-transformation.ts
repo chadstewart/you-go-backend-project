@@ -6,7 +6,7 @@ import { errorMessages } from "../../utils/error-utils";
 import { prepareBase64ImageData } from "../../utils/prepare-base64-image-data";
 import { decodeImg, encodeToBase64 } from "../../utils/base64-utils";
 
-export function imageTransformation (req: Request, res: Response) {
+export async function imageTransformation (req: Request, res: Response) {
     try {
         const isThereABase64StringVariable = "base64String" in req.body;
         if(!isThereABase64StringVariable) return res.status(400).json({
@@ -46,12 +46,16 @@ export function imageTransformation (req: Request, res: Response) {
             sendFileLocation: path.join(__dirname, `../../../`, `images/output-${Date.now()}.jpg`)
         };
 
-        imageManipulation(
+        const manipedImg = await imageManipulation(
             filesLocation.imageBuffer,
             filesLocation.sendFileLocation,
-            transformationSpecs,
-            res
+            transformationSpecs
         );
+
+        return res.status(200).json({
+            success: "false",
+            message: manipedImg
+        });
     } catch (error) {
         console.log(error);
         return res.status(500).json({
@@ -79,8 +83,7 @@ type atLeastOneTransformSpec = RequireAtLeastOne<transformationSpecs>;
 async function imageManipulation (
         imageBuffer: Buffer,
         outputLocation: string,
-        transformationSpecs: atLeastOneTransformSpec,
-        res: Response
+        transformationSpecs: atLeastOneTransformSpec
     ) {
     try{
         const isThereNoImageFolder = !fs.existsSync("images");
@@ -121,15 +124,13 @@ async function imageManipulation (
             imgToTransform = imgToTransform.flop();
         };
 
-        imgToTransform.toFile(outputLocation, () => {
-            const responseMessage = encodeToBase64(outputLocation);
-            console.log("The image was successfully transformed!");
+        const { data: manipedImgBuffer } = await imgToTransform.toBuffer({ resolveWithObject: true });
 
-            return res.status(200).json({
-                success: true,
-                message: responseMessage
-            });
-        });
+        imgToTransform.toFile(outputLocation, () => console.log("The image was successfully transformed!"));
+
+        const base64Img = encodeToBase64(manipedImgBuffer);
+
+        return base64Img;
     } catch (error) {
         throw error;
     }
