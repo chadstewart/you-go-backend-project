@@ -5,6 +5,7 @@ import fs from "fs";
 import path from "path";
 import swaggerUi from "swagger-ui-express";
 import YAML from "yamljs";
+import { notDefined } from "./middlewares/not-defined";
 
 export const app = express();
 
@@ -20,7 +21,10 @@ app.use("/api-docs", swaggerUi.serve,   swaggerUi.setup(swaggerDocument, swagger
 
 //Initialize Request Data Type
 app.use(express.json());
-app.use(bodyParser.json({ limit: "50mb" }));
+app.use(bodyParser.json({ limit: "10mb" }));
+
+//Initalize Not-Defined Middleware
+app.use(notDefined);
 
 //Intialize Routers
 import indexRouter from "./routes/index-routes";

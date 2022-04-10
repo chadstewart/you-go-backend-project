@@ -100,46 +100,6 @@ paths:
                 example:
                   success: false
                   message: "There was an internal server error"
-    get:
-      tags:
-        - resize
-      responses:
-        501:
-          description: Not implemented
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/NotImplemented'
-    put:
-      tags:
-        - resize
-      responses:
-        501:
-          description: Not implemented
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/NotImplemented'
-    patch:
-      tags:
-        - resize
-      responses:
-        501:
-          description: Not implemented
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/NotImplemented'
-    delete:
-      tags:
-        - resize
-      responses:
-        501:
-          description: Not implemented
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/NotImplemented'
   /image/grayscale:
     description: Makes an image grayscale
     post:
@@ -226,46 +186,6 @@ paths:
                 example:
                   success: false
                   message: "There was an internal server error"
-    get:
-      tags:
-        - grayscale
-      responses:
-        501:
-          description: Not implemented
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/NotImplemented'
-    put:
-      tags:
-        - grayscale
-      responses:
-        501:
-          description: Not implemented
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/NotImplemented'
-    patch:
-      tags:
-        - grayscale
-      responses:
-        501:
-          description: Not implemented
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/NotImplemented'
-    delete:
-      tags:
-        - grayscale
-      responses:
-        501:
-          description: Not implemented
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/NotImplemented'
   /image/transformation:
     description: Transforms an image
     post:
@@ -357,46 +277,6 @@ paths:
                 example:
                   success: false
                   message: "There was an internal server error"
-    get:
-      tags:
-        - transformation
-      responses:
-        501:
-          description: Not implemented
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/NotImplemented'
-    put:
-      tags:
-        - transformation
-      responses:
-        501:
-          description: Not implemented
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/NotImplemented'
-    patch:
-      tags:
-        - transformation
-      responses:
-        501:
-          description: Not implemented
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/NotImplemented'
-    delete:
-      tags:
-        - transformation
-      responses:
-        501:
-          description: Not implemented
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/NotImplemented'
   /image/blur:
     description: Add a blur to an image
     post:
@@ -483,46 +363,6 @@ paths:
                 example:
                   success: false
                   message: "There was an internal server error"
-    get:
-      tags:
-        - blur
-      responses:
-        501:
-          description: Not implemented
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/NotImplemented'
-    put:
-      tags:
-        - blur
-      responses:
-        501:
-          description: Not implemented
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/NotImplemented'
-    patch:
-      tags:
-        - blur
-      responses:
-        501:
-          description: Not implemented
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/NotImplemented'
-    delete:
-      tags:
-        - blur
-      responses:
-        501:
-          description: Not implemented
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/NotImplemented'
   /image/negate:
     description: Negates the colors of an image
     post:
@@ -609,59 +449,3 @@ paths:
                 example:
                   success: false
                   message: "There was an internal server error"
-    get:
-      tags:
-        - negate
-      responses:
-        501:
-          description: Not implemented
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/NotImplemented'
-    put:
-      tags:
-        - negate
-      responses:
-        501:
-          description: Not implemented
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/NotImplemented'
-    patch:
-      tags:
-        - negate
-      responses:
-        501:
-          description: Not implemented
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/NotImplemented'
-    delete:
-      tags:
-        - negate
-      responses:
-        501:
-          description: Not implemented
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/NotImplemented'
-
-components:
-  NotImplemented:
-    type: object
-    properties:
-      success:
-        type: boolean
-        description: Whether the response was a success or not
-      message:
-        type: string
-        description: Content of the response
-    example:
-      success: false
-      message: "This HTTP verb is not implemented"
-    
-# Need to implement two more paths for two image manipulations specified from 3rd party library
