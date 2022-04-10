@@ -40,7 +40,7 @@ I also validate that the entire string is a base64 formatted string before attem
 
 ## Testing
 
-The test suite currently will test all api endpoints and all the utilies seperately. I have the coverage tag on the test script so I can see how much of coverage I have and it was pretty good simply testing the endpoints but I also want that when a test fails, it'll tell me specifically which function fails. This will probably seem counter-intuitive to my next point but I did not test prepareBase64ImageData because I felt it was just call other functions and wasn't doing anything outside of that so if I tested those functions thoroughly then I wouldn't need to test this function since it doesn't add more functionality.
+The test suite currently will test all api endpoints and all the utilies seperately. I have the coverage tag on the test script so I can see how much of coverage I have and it was pretty good simply testing the endpoints but I also want that when a test fails, it'll tell me specifically which function fails.
 
 ## And that's it
 

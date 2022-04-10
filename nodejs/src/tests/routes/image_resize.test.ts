@@ -95,27 +95,27 @@ describe("Images Resize Route", () => {
     expect(res.statusCode).toEqual(400);
   });
 
-  it("It should send a 501 status code when using a HTTP GET", async () => {
+  it("It should send a 405 status code when using a HTTP GET", async () => {
     const res = await request(app).get("/image/resize");
 
-    expect(res.statusCode).toEqual(501);
+    expect(res.statusCode).toEqual(405);
   });
 
-  it("It should send a 501 status code when using a HTTP PUT", async () => {
+  it("It should send a 405 status code when using a HTTP PUT", async () => {
     const res = await request(app).put("/image/resize");
 
-    expect(res.statusCode).toEqual(501);
+    expect(res.statusCode).toEqual(405);
   });
 
-  it("It should send a 501 status code when using a HTTP PATCH", async () => {
+  it("It should send a 405 status code when using a HTTP PATCH", async () => {
     const res = await request(app).patch("/image/resize");
 
-    expect(res.statusCode).toEqual(501);
+    expect(res.statusCode).toEqual(405);
   });
 
-  it("It should send a 501 status code when using a HTTP DELETE", async () => {
+  it("It should send a 405 status code when using a HTTP DELETE", async () => {
     const res = await request(app).delete("/image/resize");
 
-    expect(res.statusCode).toEqual(501);
+    expect(res.statusCode).toEqual(405);
   });
 });

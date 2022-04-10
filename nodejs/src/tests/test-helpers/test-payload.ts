@@ -33,6 +33,7 @@ const transformationRequestPayload: transformationTestPayloadInterface = {
 };
 
 export {
+  base64Img,
   resizeRequestPayload,
   transformationRequestPayload
 };
