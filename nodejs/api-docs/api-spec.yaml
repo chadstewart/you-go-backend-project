@@ -15,6 +15,19 @@ paths:
       description: Takes an image with a percentage scale between 1 - 99 and returns the image to that scale
       tags:
         - resize
+      parameters:
+        - in: JSON
+          name: percentageScale
+          schema:
+            type: number
+          required: true
+          description: The percentage it will scale to. This number must be between 1 - 99.
+        - in: JSON
+          name: base64String
+          schema:
+            type: string
+          required: true
+          description: The base64String that will be decoded and turned into an image.
       requestBody:
         required: true
         content:
@@ -106,6 +119,13 @@ paths:
       description: Takes an image returns the image in grayscale
       tags:
         - grayscale
+      parameters:
+        - in: JSON
+          name: base64String
+          schema:
+            type: string
+          required: true
+          description: The base64String that will be decoded and turned into an image.
       requestBody:
         required: true
         content:
@@ -192,6 +212,28 @@ paths:
       description: Takes an image with a transformation type and parameters on how to conduct that transformation and returns an image based on those specifications
       tags:
         - transformation
+      parameters:
+        - in: JSON
+          name: transformationSpecs
+          schema:
+            type: object
+            properties:
+              resizeScale:
+                type: number
+              rotation:
+                type: number
+              xAxisFlip:
+                type: boolean
+              yAxisFlip:
+                type: boolean
+          required: true
+          description: transformationSpecs is required and at least one transformation must be defined.
+        - in: JSON
+          name: base64String
+          schema:
+            type: string
+          required: true
+          description: The base64String that will be decoded and turned into an image.
       requestBody:
         required: true
         content:
@@ -209,7 +251,7 @@ paths:
                   type: string
                   description: The image as a base64 string
               example:
-                transformationSpecs: { "resizeScale": 40, "rotation": 60, "xAxisFlip": "true", "yAxisFlip": "true" }
+                transformationSpecs: { "resizeScale": 40, "rotation": 60, "xAxisFlip": true, "yAxisFlip": true }
                 base64String: data:image/jpeg;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
       responses:
         200:
@@ -283,6 +325,13 @@ paths:
       description: Takes an image returns the image in blur
       tags:
         - blur
+      parameters:
+        - in: JSON
+          name: base64String
+          schema:
+            type: string
+          required: true
+          description: The base64String that will be decoded and turned into an image.
       requestBody:
         required: true
         content:
@@ -369,6 +418,13 @@ paths:
       description: Takes an image returns the image in negate
       tags:
         - negate
+      parameters:
+        - in: JSON
+          name: base64String
+          schema:
+            type: string
+          required: true
+          description: The base64String that will be decoded and turned into an image.
       requestBody:
         required: true
         content:
