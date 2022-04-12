@@ -5,6 +5,7 @@ import { Request, Response } from "express";
 import { errorMessages } from "../../utils/error-utils";
 import { prepareBase64ImageData } from "../../utils/prepare-base64-image-data";
 import { decodeImg, encodeToBase64 } from "../../utils/base64-utils";
+import logger from "../../logger";
 
 export async function imageBlur (req: Request, res: Response) {
     try {
@@ -42,7 +43,7 @@ export async function imageBlur (req: Request, res: Response) {
             message: manipedImg
         });
     } catch (error) {
-        console.log(error);
+        logger.error(`${error}`, { manipulation: "blur"});
         return res.status(500).json({
             success: "false",
             message: errorMessages.internalServerError
@@ -62,7 +63,8 @@ async function imageManipulation (
         const manipedImgBuffer = await manipedImg.toBuffer();
         
         //manipedImg.toFile(outputLocation, () => console.log("The image was successfully blurred!"));
-
+        logger.info("Image was successfully blurred!", { manipulation: "blur"});
+        
         const base64Img = encodeToBase64(manipedImgBuffer);
 
         return base64Img;

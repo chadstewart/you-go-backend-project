@@ -1,5 +1,4 @@
 import { base64StructureRegex } from "./validation-utils";
-import fs from "fs";
 
 export function extractInfoFromBase64String (base64String: string) {
     const foundMatches = base64String.match(base64StructureRegex);
