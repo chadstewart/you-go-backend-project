@@ -5,9 +5,14 @@ import fs from "fs";
 import path from "path";
 import swaggerUi from "swagger-ui-express";
 import YAML from "yamljs";
-import { notDefined } from "./middlewares/not-defined";
+import notDefined from "./middlewares/not-defined";
+import imageLogger from "./middlewares/image-logger";
 
 export const app = express();
+
+//Initalize Middlewares
+app.use(notDefined);
+app.use(imageLogger);
 
 //Initialize Swagger Doc Server
 const swaggerOptions = {
@@ -22,9 +27,6 @@ app.use("/api-docs", swaggerUi.serve,   swaggerUi.setup(swaggerDocument, swagger
 //Initialize Request Data Type
 app.use(express.json());
 app.use(bodyParser.json({ limit: "10mb" }));
-
-//Initalize Not-Defined Middleware
-app.use(notDefined);
 
 //Intialize Routers
 import indexRouter from "./routes/index-routes";
