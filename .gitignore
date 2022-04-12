@@ -4,3 +4,4 @@ cert
 images
 coverage
 *.sh
+logs
