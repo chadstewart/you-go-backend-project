@@ -1,10 +1,9 @@
 import path from "path";
-import sharp from "sharp";
-import fs from "fs";
 import { Request, Response } from "express";
 import { errorMessages } from "../../utils/error-utils";
 import { prepareBase64ImageData } from "../../utils/prepare-base64-image-data";
-import { decodeImg, encodeToBase64 } from "../../utils/base64-utils";
+import { decodeImg } from "../../utils/base64-utils";
+import imageManipulation from "../../services/image-manipulation";
 import logger from "../../logger";
 
 export async function imageBlur (req: Request, res: Response) {
@@ -34,6 +33,7 @@ export async function imageBlur (req: Request, res: Response) {
         };
 
         const manipedImg = await imageManipulation(
+            "blur",
             filesLocation.imageBuffer,
             filesLocation.sendFileLocation
         );
@@ -48,27 +48,5 @@ export async function imageBlur (req: Request, res: Response) {
             success: "false",
             message: errorMessages.internalServerError
         });
-    }
-};
-
-async function imageManipulation (
-        imageBuffer: Buffer,
-        outputLocation: string
-    ) {
-    try{
-        // const isThereNoImageFolder = !fs.existsSync("images");
-        // if(isThereNoImageFolder) fs.mkdirSync("images");
-
-        const manipedImg = sharp(imageBuffer).blur(1);
-        const manipedImgBuffer = await manipedImg.toBuffer();
-        
-        //manipedImg.toFile(outputLocation, () => console.log("The image was successfully blurred!"));
-        logger.info("Image was successfully blurred!", { manipulation: "blur"});
-        
-        const base64Img = encodeToBase64(manipedImgBuffer);
-
-        return base64Img;
-    } catch (error) {
-        throw error;
     }
 };

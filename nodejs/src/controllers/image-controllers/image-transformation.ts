@@ -1,11 +1,11 @@
 import path from "path";
-import sharp from "sharp";
-import fs from "fs";
 import { Request, Response } from "express";
 import { errorMessages } from "../../utils/error-utils";
 import { prepareBase64ImageData } from "../../utils/prepare-base64-image-data";
-import { decodeImg, encodeToBase64 } from "../../utils/base64-utils";
+import { decodeImg } from "../../utils/base64-utils";
 import logger from "../../logger";
+import imageManipulation from "../../services/image-manipulation";
+import { RequireAtLeastOne } from "../../interfaces/require-at-least-one";
 
 export async function imageTransformation (req: Request, res: Response) {
     try {
@@ -48,9 +48,10 @@ export async function imageTransformation (req: Request, res: Response) {
         };
 
         const manipedImg = await imageManipulation(
+            "transformation",
             filesLocation.imageBuffer,
             filesLocation.sendFileLocation,
-            transformationSpecs
+            { transformationSpecs }
         );
 
         return res.status(200).json({
@@ -66,12 +67,6 @@ export async function imageTransformation (req: Request, res: Response) {
     }
 };
 
-type RequireAtLeastOne<T, Keys extends keyof T = keyof T> =
-    Pick<T, Exclude<keyof T, Keys>>
-    & {
-        [K in Keys]-?: Required<Pick<T, K>> & Partial<Pick<T, Exclude<Keys, K>>>
-    }[Keys]
-
 interface transformationSpecs {
     resizeScale?: number;
     rotation?: number;
@@ -80,63 +75,6 @@ interface transformationSpecs {
 };
 
 type atLeastOneTransformSpec = RequireAtLeastOne<transformationSpecs>;
-
-async function imageManipulation (
-        imageBuffer: Buffer,
-        outputLocation: string,
-        transformationSpecs: atLeastOneTransformSpec
-    ) {
-    try{
-        // const isThereNoImageFolder = !fs.existsSync("images");
-        // if(isThereNoImageFolder) fs.mkdirSync("images");
-        
-        let imgToTransform = sharp(imageBuffer);
-
-        const isResizeScaleInTransformationSpecs = "resizeScale" in transformationSpecs;
-        if(isResizeScaleInTransformationSpecs && transformationSpecs.resizeScale) {
-            const imgWidth = await sharp(imageBuffer).metadata()
-            .then(metadata => {
-                if(metadata.width) return metadata.width;
-                return 0;
-            });
-    
-            const percentScale = transformationSpecs.resizeScale;
-            const newWidth = Math.round(imgWidth * (percentScale / 100));
-
-            imgToTransform = imgToTransform.resize( {
-                width: newWidth,
-                fit: "contain"
-            });
-        };
-
-        const isRotationInTransformationSpecs = "rotation" in transformationSpecs;
-        if(isRotationInTransformationSpecs && transformationSpecs.rotation) {
-            const rotation = transformationSpecs.rotation;
-            imgToTransform = imgToTransform.rotate(rotation);
-        };
-
-        const isYAxisFlipInTransformationSpecs = "yAxisFlip" in transformationSpecs;
-        if(isYAxisFlipInTransformationSpecs) {
-            imgToTransform = imgToTransform.flip();
-        };
-
-        const isXAxisFlipInTransformationSpecs = "xAxisFlip" in transformationSpecs;
-        if(isXAxisFlipInTransformationSpecs) {
-            imgToTransform = imgToTransform.flop();
-        };
-
-        const manipedImgBuffer = await imgToTransform.toBuffer();
-
-        //imgToTransform.toFile(outputLocation, () => console.log("The image was successfully transformed!"));
-        logger.info("The image was successfully transformed!", { manipulation: "transformation"});
-
-        const base64Img = encodeToBase64(manipedImgBuffer);
-
-        return base64Img;
-    } catch (error) {
-        throw error;
-    }
-};
 
 export function validateTransoformationSpecs (transformationSpecs: atLeastOneTransformSpec) {
     const isTranformationSpecsAnObject = typeof transformationSpecs === "object";

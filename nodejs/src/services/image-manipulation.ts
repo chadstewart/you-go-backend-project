@@ -17,8 +17,10 @@ export default function imageManipulation (
     manipulationType: string,
     imageBuffer: Buffer,
     outputLocation: string,
-    percentScale?: number,
-    transformationSpecs?: AtLeastOneTransformSpec
+    inputSpecs?: {
+        percentageScale?: number,
+        transformationSpecs?: AtLeastOneTransformSpec
+    }
 ) {
     // const isThereNoImageFolder = !fs.existsSync("images");
     // if(isThereNoImageFolder) fs.mkdirSync("images");
@@ -30,11 +32,15 @@ export default function imageManipulation (
     const isTransformationManip = manipulationType === "transformation";
 
     try {
-        if(isResizeManip) return imageManipulationResize(imageBuffer, outputLocation, percentScale as number);
         if(isBlurManip) return imageManipulationBlur(imageBuffer, outputLocation);
         if(isNegateManip) return imageManipulationNegate(imageBuffer, outputLocation);
         if(isGrayScaleManip) return imageManipulationGrayScale(imageBuffer, outputLocation);
-        if(isTransformationManip) return imageManipulationTransformation(imageBuffer, outputLocation, transformationSpecs as AtLeastOneTransformSpec);
+
+        if(inputSpecs) {
+            if(isResizeManip) return imageManipulationResize(imageBuffer, outputLocation, inputSpecs.percentageScale as number);
+            if(isTransformationManip) return imageManipulationTransformation(imageBuffer, outputLocation, inputSpecs.transformationSpecs as AtLeastOneTransformSpec);
+            throw new Error("There was no input specs defined!");
+        }
         
         throw new Error("There was no image transformation type selected!");
     } catch (error) {
@@ -102,7 +108,7 @@ async function imageManipulationNegate (
 async function imageManipulationResize(
     imageBuffer: Buffer,
     outputLocation: string,
-    percentScale: number
+    percentageScale: number
 ) {
     try {
         const imgWidth = await sharp(imageBuffer).metadata()
@@ -111,7 +117,7 @@ async function imageManipulationResize(
             return 0;
         });
 
-        const newWidth = Math.round(imgWidth * (percentScale / 100));
+        const newWidth = Math.round(imgWidth * (percentageScale / 100));
         
         const manipedImg = sharp(imageBuffer)
             .resize( {
@@ -138,6 +144,7 @@ async function imageManipulationTransformation (
     transformationSpecs: AtLeastOneTransformSpec
 ) {
     try{
+        console.log(JSON.stringify(transformationSpecs));
         let imgToTransform = sharp(imageBuffer);
 
         const isResizeScaleInTransformationSpecs = "resizeScale" in transformationSpecs;
@@ -148,8 +155,8 @@ async function imageManipulationTransformation (
                 return 0;
             });
 
-            const percentScale = transformationSpecs.resizeScale;
-            const newWidth = Math.round(imgWidth * (percentScale / 100));
+            const percentageScale = transformationSpecs.resizeScale;
+            const newWidth = Math.round(imgWidth * (percentageScale / 100));
 
             imgToTransform = imgToTransform.resize( {
                 width: newWidth,

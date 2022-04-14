@@ -1,11 +1,10 @@
 import path from "path";
-import sharp from "sharp";
-import fs from "fs";
 import { Request, Response } from "express";
 import { errorMessages } from "../../utils/error-utils";
 import { prepareBase64ImageData } from "../../utils/prepare-base64-image-data";
-import { decodeImg, encodeToBase64 } from "../../utils/base64-utils";
+import { decodeImg } from "../../utils/base64-utils";
 import logger from "../../logger";
+import imageManipulation from "../../services/image-manipulation";
 
 export async function imageGrayScale (req: Request, res: Response) {
     try {
@@ -34,6 +33,7 @@ export async function imageGrayScale (req: Request, res: Response) {
         };
 
         const manipedImg = await imageManipulation(
+            "grayscale",
             filesLocation.imageBuffer,
             filesLocation.sendFileLocation
         );
@@ -48,27 +48,5 @@ export async function imageGrayScale (req: Request, res: Response) {
             success: "false",
             message: errorMessages.internalServerError
         });
-    }
-};
-
-async function imageManipulation (
-        imageBuffer: Buffer,
-        outputLocation: string
-    ) {
-    try{
-        // const isThereNoImageFolder = !fs.existsSync("images");
-        // if(isThereNoImageFolder) fs.mkdirSync("images");
-
-        const manipedImg = sharp(imageBuffer).grayscale();
-        const manipedImgBuffer = await manipedImg.toBuffer();
-        
-        //manipedImg.toFile(outputLocation, () => console.log("The image was successfully grayscaled!"));
-        logger.info("The image was successfully grayscaled!", { manipulation: "grayscaled"});
-
-        const base64Img = encodeToBase64(manipedImgBuffer);
-
-        return base64Img;
-    } catch (error) {
-        throw error;
     }
 };
