@@ -10,10 +10,6 @@ import imageLogger from "./middlewares/image-logger";
 
 export const app = express();
 
-//Initalize Middlewares
-app.use(notDefined);
-app.use(imageLogger);
-
 //Initialize Swagger Doc Server
 const swaggerOptions = {
     swaggerOptions: {
@@ -28,6 +24,9 @@ app.use("/api-docs", swaggerUi.serve,   swaggerUi.setup(swaggerDocument, swagger
 app.use(express.json());
 app.use(bodyParser.json({ limit: "10mb" }));
 
+//Initalize NotDefined
+app.use(notDefined);
+
 //Intialize Routers
 import indexRouter from "./routes/index-routes";
 import imageRouter from "./routes/image-routes";
@@ -35,6 +34,9 @@ import imageRouter from "./routes/image-routes";
 //Use Routers
 app.use("/", indexRouter);
 app.use("/image", imageRouter);
+
+//Intitialize Image Logger
+app.use(imageLogger);
 
 //Enable https
 export const secureServer = https.createServer({
