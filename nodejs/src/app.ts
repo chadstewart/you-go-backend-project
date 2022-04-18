@@ -18,11 +18,10 @@ const swaggerOptions = {
 };
 
 const swaggerDocument = YAML.load(path.join(__dirname, "../api-docs", "api-spec.yaml"));
-app.use("/api-docs", swaggerUi.serve,   swaggerUi.setup(swaggerDocument, swaggerOptions));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument, swaggerOptions));
 
 //Initialize Request Data Type
-app.use(express.json());
-app.use(bodyParser.json({ limit: "10mb" }));
+app.use(express.json({ limit: "10mb" }));
 
 //Initalize NotDefined
 app.use(notDefined);

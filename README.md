@@ -4,6 +4,10 @@ This is an app written by [Chad Stewart](https://www.github.com/ChadStewart) for
 
 This project was to complete [part 0](https://github.com/YouGoDevs/YouGo-Backend-Track/blob/main/Project-0.md#part-0-the-agreement) of the practice project.
 
+## My Design Decisions
+
+You can find a document listing my design decisions [here](./misc/design-decisions/design-decisions.md).
+
 ### Technologies Used:
 
 <ul>
@@ -11,6 +15,9 @@ This project was to complete [part 0](https://github.com/YouGoDevs/YouGo-Backend
 <li>Express.js</li>
 <li>TypeScript</li>
 <li>Sharp</li>
+<li>Winston</li>
+<li>Jest</li>
+<li>SuperTest</li>
 </ul>
 
 ### Quick Note!!
@@ -60,10 +67,6 @@ This is a web server which with currently 5 endpoints:
 </ul>
 
 The server will accept post requests with images in base64 and only accepts image/jpeg and image/png files currently. All other files and requests will be rejected.
-
-### My Design Decisions
-
-You can find a document listing my design decisions [here](./nodejs/design-decisions.md)
 
 ### Acknowledgements
 

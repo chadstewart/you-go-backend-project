@@ -8,6 +8,8 @@ Chose to use TypeScript to add static typing as well and to continue to learn Ty
 
 I ended up using Sharp for image processing. This choice was mainly because I heard that it was one of if not the most popular JS library for image processing and manipulation so it felt like an easy choice.
 
+For logging, I ended up going with Winston because it was one of the more popular logging frameworks for Node. Admittedly I don't have too much knowledge here and so I just went with the best recommendation.
+
 ## Endpoint Design
 
 I chose to split the endpoints rather than have a single image endpoint. I personally like to be more explicit when I'm coding and will always choice an implementation if I feel it helps with clarity. As opposed to building out a mechanism to choose the different alterations, I figured having the endpoints labeled explicitly would be clearer for other devs using the service. I also feel like the structure of the controller is a bit cleaner but that could be just me. For right now, that endpoints only accept image/jpeg and image/png mostly to keep things simple. Each endpoint will handle validating it's own parameters before attempting to get and decode the base64 string. The endpoints take a json object where the image data is sent and all the necessary parameters are defined. Honestly, I did this because it made the whole thing simple to implement and I was very use to constructing objects properly so I felt more comfortable staying in that realm.
@@ -23,6 +25,12 @@ I chose to split the endpoints rather than have a single image endpoint. I perso
 <li>Image Negate: Not much to say about this honestly. It's very similar to Image Resize except taking out the resize specific parts. (Noticed this was copied and pasted yet? =P)
 </li>
 </ul>
+
+## Services
+
+When I started the project, I didn't have the concept of having services separate from my endpoints. Originally, any image manipulation was done directly in the controller. Now I have a services folder that stores the business logic I want to use.
+
+<li>Image Manipulation: Originally in each controller, I migrated them all to a file in services and put a gateway function to call the specific manipulation I needed with correct parameters</li>
 
 ## Image Upload
 
@@ -41,6 +49,10 @@ I also validate that the entire string is a base64 formatted string before attem
 ## Testing
 
 The test suite currently will test all api endpoints and all the utilies seperately. I have the coverage tag on the test script so I can see how much of coverage I have and it was pretty good simply testing the endpoints but I also want that when a test fails, it'll tell me specifically which function fails.
+
+## Logging
+
+I currently log all the requests that come to the server, I log responses and I log when services are completed successfully. I also log errors whenever they occur. As of right now, the only log levels that are really used is info and error as I'm still very new to logging and don't understand exactly where to apply the other levels of logging to this application (assuming it's even needed honestly).
 
 ## And that's it
 

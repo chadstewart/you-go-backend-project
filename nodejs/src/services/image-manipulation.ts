@@ -30,15 +30,16 @@ export default function imageManipulation (
     const isNegateManip = manipulationType === "negate";
     const isGrayScaleManip = manipulationType === "grayscale";
     const isTransformationManip = manipulationType === "transformation";
+    const isInputSpecsDefined = inputSpecs;
 
     try {
-        if(isBlurManip) return imageManipulationBlur(imageBuffer, outputLocation);
-        if(isNegateManip) return imageManipulationNegate(imageBuffer, outputLocation);
-        if(isGrayScaleManip) return imageManipulationGrayScale(imageBuffer, outputLocation);
+        if(isBlurManip) return imageBlur(imageBuffer, outputLocation);
+        if(isNegateManip) return imageNegate(imageBuffer, outputLocation);
+        if(isGrayScaleManip) return imageGrayScale(imageBuffer, outputLocation);
 
-        if(inputSpecs) {
-            if(isResizeManip) return imageManipulationResize(imageBuffer, outputLocation, inputSpecs.percentageScale as number);
-            if(isTransformationManip) return imageManipulationTransformation(imageBuffer, outputLocation, inputSpecs.transformationSpecs as AtLeastOneTransformSpec);
+        if(isInputSpecsDefined) {
+            if(isResizeManip) return imageResize(imageBuffer, outputLocation, inputSpecs.percentageScale as number);
+            if(isTransformationManip) return imageTransformation(imageBuffer, outputLocation, inputSpecs.transformationSpecs as AtLeastOneTransformSpec);
             throw new Error("There was no input specs defined!");
         }
         
@@ -48,7 +49,7 @@ export default function imageManipulation (
     }
 }
 
-async function imageManipulationGrayScale (
+async function imageGrayScale (
     imageBuffer: Buffer,
     outputLocation: string
 ) {
@@ -67,7 +68,7 @@ async function imageManipulationGrayScale (
     }
 };
 
-async function imageManipulationBlur (
+async function imageBlur (
     imageBuffer: Buffer,
     outputLocation: string
 ) {
@@ -86,7 +87,7 @@ async function imageManipulationBlur (
     }
 };
 
-async function imageManipulationNegate (
+async function imageNegate (
     imageBuffer: Buffer,
     outputLocation: string
 ) {
@@ -105,7 +106,7 @@ async function imageManipulationNegate (
     }
 };
 
-async function imageManipulationResize(
+async function imageResize(
     imageBuffer: Buffer,
     outputLocation: string,
     percentageScale: number
@@ -138,7 +139,7 @@ async function imageManipulationResize(
     }
 };
 
-async function imageManipulationTransformation (
+async function imageTransformation (
     imageBuffer: Buffer,
     outputLocation: string,
     transformationSpecs: AtLeastOneTransformSpec
