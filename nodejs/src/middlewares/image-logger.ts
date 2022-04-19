@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import logger from "../logger";
 import CustomResponse from "../interfaces/custom-response";
 
-export default function imageLogger (req: Request, res: Response, next: NextFunction) {
+export default function imageLogger (req: Request, res: CustomResponse, next: NextFunction) {
     const { rawHeaders, httpVersion, method, body, url, params } = req;
     const isRequestToAnImageEndpoint = req.path.includes('/image');
 
