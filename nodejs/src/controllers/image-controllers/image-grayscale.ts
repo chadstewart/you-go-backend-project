@@ -29,10 +29,19 @@ export async function imageGrayScale (req: Request, res: Response, next: NextFun
         const statusCode = matchesOrError === errorMessages.notAnCompatibleImgType ? 415 : 400;
         
         const isMatchesAnError = !Array.isArray(matchesOrError);
-        if(isMatchesAnError) return res.status(statusCode).json({
-            success: "false",
-            message: matchesOrError
-        });
+        if(isMatchesAnError) {
+            const responseToUser = {
+                success: "false",
+                message: matchesOrError
+            };
+
+            res.locals.success = responseToUser.success;
+            res.locals.message = responseToUser.message;
+            
+            res.status(statusCode).json(responseToUser);
+
+            return next();
+        }
         
         const imageBuffer = decodeImg(matchesOrError);
         
@@ -47,10 +56,16 @@ export async function imageGrayScale (req: Request, res: Response, next: NextFun
             filesLocation.sendFileLocation
         );
 
-        return res.status(200).json({
+        const responseToUser = {
             success: "true",
             message: manipedImg
-        });
+        }
+
+        res.locals.success = responseToUser.success;
+        res.locals.message = responseToUser.message;
+        res.status(200).json(responseToUser);
+
+        return next();
     } catch (error) {
         logger.error(`${error}`, { manipulation: "grayscale"});
         return res.status(500).json({
