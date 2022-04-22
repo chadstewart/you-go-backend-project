@@ -1,15 +1,11 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 import logger from "../logger";
-import CustomResponse from "../interfaces/custom-response";
 
-export default function imageLogger (req: Request, res: CustomResponse, next: NextFunction) {
+export default function imageLogger (req: Request, res: Response) {
     const { rawHeaders, httpVersion, method, body, url, params } = req;
-    const isRequestToAnImageEndpoint = req.path.includes('/image');
 
     const headers = res.getHeaders();
-    const { statusCode, statusMessage } = res;
-
-    if(isRequestToAnImageEndpoint) {
+    const { statusCode, locals: serverResponse } = res;
         logger.info(JSON.stringify({
             rawHeaders,
             httpVersion,
@@ -18,11 +14,10 @@ export default function imageLogger (req: Request, res: CustomResponse, next: Ne
             params,
             body
         }));
-        next();
+
         logger.info(JSON.stringify({
             headers,
             statusCode,
-            statusMessage
+            serverResponse
         }));
-    }
 };

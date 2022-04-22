@@ -1,18 +1,27 @@
 import path from "path";
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { errorMessages } from "../../utils/error-utils";
 import { prepareBase64ImageData } from "../../utils/prepare-base64-image-data";
 import { decodeImg } from "../../utils/base64-utils";
 import logger from "../../logger";
 import imageManipulation from "../../services/image-manipulation";
 
-export async function imageGrayScale (req: Request, res: Response) {
+export async function imageGrayScale (req: Request, res: Response, next: NextFunction) {
     try {
         const isThereABase64StringVariable = "base64String" in req.body;
-        if(!isThereABase64StringVariable) return res.status(400).json({
-            success: "false",
-            message: errorMessages.base64StringVariableNotFound
-        });
+        if(!isThereABase64StringVariable) {
+            const responseToUser = {
+                success: "false",
+                message: errorMessages.base64StringVariableNotFound
+            };
+
+            res.locals.success = responseToUser.success;
+            res.locals.message = responseToUser.message;
+            
+            res.status(400).json(responseToUser);
+
+            return next();
+        }
 
         const { base64String } = req.body;
 
