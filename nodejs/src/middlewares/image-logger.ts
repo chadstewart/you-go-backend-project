@@ -1,28 +1,33 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 import logger from "../logger";
-import CustomResponse from "../interfaces/custom-response";
 
-export default function imageLogger (req: Request, res: Response, next: NextFunction) {
+export default function imageLogger (req: Request, res: Response) {
     const { rawHeaders, httpVersion, method, body, url, params } = req;
-    const isRequestToAnImageEndpoint = req.path.includes('/image');
-
     const headers = res.getHeaders();
-    const { statusCode, statusMessage } = res;
+    const { statusCode, locals: serverResponse } = res;
 
-    if(isRequestToAnImageEndpoint) {
-        logger.info(JSON.stringify({
-            rawHeaders,
-            httpVersion,
-            url,
-            method,
-            params,
-            body
-        }));
-        next();
+    logger.info(JSON.stringify({
+        rawHeaders,
+        httpVersion,
+        url,
+        method,
+        params,
+        body
+    }));
+
+    const isStatusCodeIn200Range = 200 <= statusCode && statusCode < 300;
+
+    if(isStatusCodeIn200Range) {
         logger.info(JSON.stringify({
             headers,
             statusCode,
-            statusMessage
+            serverResponse
+        }));
+    } else {
+        logger.warn(JSON.stringify({
+            headers,
+            statusCode,
+            serverResponse
         }));
     }
 };

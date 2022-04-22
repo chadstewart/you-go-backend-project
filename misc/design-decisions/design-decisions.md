@@ -52,7 +52,7 @@ The test suite currently will test all api endpoints and all the utilies seperat
 
 ## Logging
 
-I currently log all the requests that come to the server, I log responses and I log when services are completed successfully. I also log errors whenever they occur. As of right now, the only log levels that are really used is info and error as I'm still very new to logging and don't understand exactly where to apply the other levels of logging to this application (assuming it's even needed honestly).
+I currently log all the requests that come to the server, I log all the responses and I log when services are completed successfully. I also log errors whenever they occur. I log errors as errors and I log when the api sends an error to the user but responds appropriately as warnings. I'm not sure if this is correct but I wanted a way to differentiate between actual errors and just user error to see if users are having trouble using the api. Everything else I log as info.
 
 ## And that's it
 
