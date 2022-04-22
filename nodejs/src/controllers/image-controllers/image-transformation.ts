@@ -25,18 +25,36 @@ export async function imageTransformation (req: Request, res: Response, next: Ne
         }
 
         const isThereATransformationSpecsVariable = "transformationSpecs" in req.body;
-        if(!isThereATransformationSpecsVariable) return res.status(400).json({
-            success: "false",
-            message: errorMessages.transformationSpecsNotFound
-        });
+        if(!isThereATransformationSpecsVariable) {
+            const responseToUser = {
+                success: "false",
+                message: errorMessages.transformationSpecsNotFound
+            };
+
+            res.locals.success = responseToUser.success;
+            res.locals.message = responseToUser.message;
+            
+            res.status(400).json(responseToUser);
+
+            return next();
+        }
 
         const { transformationSpecs } = req.body;
 
         const transformationSpecsError = validateTransoformationSpecs(transformationSpecs);
-        if(transformationSpecsError) return res.status(400).json({
-            success: "false",
-            message: transformationSpecsError
-        });
+        if(transformationSpecsError) {
+            const responseToUser = {
+                success: "false",
+                message: transformationSpecsError
+            };
+
+            res.locals.success = responseToUser.success;
+            res.locals.message = responseToUser.message;
+            
+            res.status(400).json(responseToUser);
+
+            return next();
+        }
 
         const { base64String } = req.body;
 
