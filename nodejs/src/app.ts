@@ -1,5 +1,4 @@
 import express from "express";
-import bodyParser from "body-parser";
 import https from "https";
 import fs from "fs";
 import path from "path";

@@ -4,9 +4,13 @@ This is an app written by [Chad Stewart](https://www.github.com/ChadStewart) for
 
 This project was to complete [part 0](https://github.com/YouGoDevs/YouGo-Backend-Track/blob/main/Project-0.md#part-0-the-agreement) of the practice project.
 
-## My Design Decisions
+### Software Design Document
 
-You can find a document listing my design decisions [here](./misc/design-decisions/design-decisions.md).
+The document describing building the project can be found [here](./misc/docs/design-document/part-0/you-go-pics-or-it-didnt-happen-project-part-0-design-document.pdf).
+
+### My Design Decisions
+
+You can find a document listing my design decisions [here](./misc/docs/design-decisions/design-decisions.md).
 
 ### Technologies Used:
 
