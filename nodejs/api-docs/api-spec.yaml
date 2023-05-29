@@ -9,7 +9,7 @@ info:
 servers:
   - url: https://localhost:3000
 paths:
-  /image/resize/:
+  /v1/image/resize/:
     description: Resize a png image
     post:
       description: Takes an image with a percentage scale between 1 - 99 and returns the image to that scale
@@ -113,7 +113,7 @@ paths:
                 example:
                   success: false
                   message: "There was an internal server error"
-  /image/grayscale:
+  /v1/image/grayscale:
     description: Makes an image grayscale
     post:
       description: Takes an image returns the image in grayscale
@@ -206,7 +206,7 @@ paths:
                 example:
                   success: false
                   message: "There was an internal server error"
-  /image/transformation:
+  /v1/image/transformation:
     description: Transforms an image
     post:
       description: Takes an image with a transformation type and parameters on how to conduct that transformation and returns an image based on those specifications
@@ -319,7 +319,7 @@ paths:
                 example:
                   success: false
                   message: "There was an internal server error"
-  /image/blur:
+  /v1/image/blur:
     description: Add a blur to an image
     post:
       description: Takes an image returns the image in blur
@@ -412,7 +412,7 @@ paths:
                 example:
                   success: false
                   message: "There was an internal server error"
-  /image/negate:
+  /v1/image/negate:
     description: Negates the colors of an image
     post:
       description: Takes an image returns the image in negate
