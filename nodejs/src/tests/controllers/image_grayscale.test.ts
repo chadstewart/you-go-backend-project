@@ -12,7 +12,7 @@ describe("Images GrayScale Route", () => {
     const testObject = resizeRequestPayload;
   
     const res = await request(app)
-                     .post("/image/grayscale")
+                     .post("/v1/image/grayscale")
                      .send(testObject);
 
     const receivedObject = JSON.parse(res.text);
@@ -27,7 +27,7 @@ describe("Images GrayScale Route", () => {
     testObject.base64String = "dat:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
 
     const res = await request(app)
-                     .post("/image/grayscale")
+                     .post("/v1/image/grayscale")
                      .send(testObject);
                      
     expect(res.statusCode).toEqual(400);
@@ -39,7 +39,7 @@ describe("Images GrayScale Route", () => {
     testObject.base64String = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
 
     const res = await request(app)
-                     .post("/image/grayscale")
+                     .post("/v1/image/grayscale")
                      .send(testObject);
                      
     expect(res.statusCode).toEqual(415);
@@ -51,32 +51,32 @@ describe("Images GrayScale Route", () => {
     delete testObject.base64String;    
 
     const res = await request(app)
-                     .post("/image/grayscale")
+                     .post("/v1/image/grayscale")
                      .send(testObject);
 
     expect(res.statusCode).toEqual(400);
   });
 
   it("It should send a 405 status code when using a HTTP GET", async () => {
-    const res = await request(app).get("/image/grayscale");
+    const res = await request(app).get("/v1/image/grayscale");
 
     expect(res.statusCode).toEqual(405);
   });
 
   it("It should send a 405 status code when using a HTTP PUT", async () => {
-    const res = await request(app).put("/image/grayscale");
+    const res = await request(app).put("/v1/image/grayscale");
 
     expect(res.statusCode).toEqual(405);
   });
 
   it("It should send a 405 status code when using a HTTP PATCH", async () => {
-    const res = await request(app).patch("/image/grayscale");
+    const res = await request(app).patch("/v1/image/grayscale");
 
     expect(res.statusCode).toEqual(405);
   });
 
   it("It should send a 405 status code when using a HTTP DELETE", async () => {
-    const res = await request(app).delete("/image/grayscale");
+    const res = await request(app).delete("/v1/image/grayscale");
 
     expect(res.statusCode).toEqual(405);
   });

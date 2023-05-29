@@ -31,7 +31,7 @@ import imageRouter from "./routes/image-routes";
 
 //Use Routers
 app.use("/", indexRouter);
-app.use("/image", imageRouter);
+app.use("/v1/image", imageRouter);
 
 //Intitialize Image Logger
 app.use(imageLogger);
