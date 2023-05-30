@@ -1,5 +1,5 @@
 import request from "supertest";
-import { app, secureServer as server } from "../../app";
+import { app } from "../../app";
 
 describe("Index Route", () => {
   it("It should get a 200 status code and get the message \'Server is live!\'", async () => {
