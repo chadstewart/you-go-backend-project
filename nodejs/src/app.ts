@@ -1,6 +1,4 @@
 import express from "express";
-import https from "https";
-import fs from "fs";
 import path from "path";
 import swaggerUi from "swagger-ui-express";
 import YAML from "yamljs";
@@ -35,9 +33,3 @@ app.use("/v1/image", imageRouter);
 
 //Intitialize Image Logger
 app.use(imageLogger);
-
-//Enable https
-export const secureServer = https.createServer({
-    key: fs.readFileSync(path.join(__dirname, "../cert", "key.pem")),
-    cert: fs.readFileSync(path.join(__dirname, "../cert", "cert.pem"))
-}, app);
