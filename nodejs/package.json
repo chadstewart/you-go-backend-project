@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run build && node dist/secure-server",
-    "dev": "NODE_ENV=development nodemon src/secure-server.ts",
-    "build": "npx tsc --project tsconfig.build.json",
+    "dev": "NODE_ENV=development tsx src/secure-server.ts",
+    "build": "tsc --project tsconfig.build.json",
     "test": "jest --coverage",
     "test:watch": "jest --watch"
   },
@@ -17,6 +17,7 @@
     "express": "^4.17.3",
     "sharp": "^0.30.2",
     "swagger-ui-express": "^4.3.0",
+    "tsx": "^3.12.7",
     "winston": "^3.7.2",
     "yamljs": "^0.3.0"
   },
@@ -29,7 +30,6 @@
     "@types/swagger-ui-express": "^4.1.3",
     "@types/yamljs": "^0.2.31",
     "jest": "^27.5.1",
-    "nodemon": "^2.0.15",
     "supertest": "^6.2.2",
     "ts-jest": "^27.1.3",
     "ts-node": "^10.7.0",
