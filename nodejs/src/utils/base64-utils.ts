@@ -7,7 +7,7 @@ export function extractInfoFromBase64String (base64String: string) {
     return [""];
 };
 
-export function decodeImg(matches: RegExpMatchArray) {
+export function decodeImg(matches: string[]) {
     const response = {
         type: matches[1],
         data: Buffer.from(matches[2], "base64")
