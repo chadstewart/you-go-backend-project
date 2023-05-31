@@ -1,6 +1,6 @@
 import request from "supertest";
-import { app } from "../../app";
-import { resizeRequestPayload } from "../test-helpers/test-payload";
+import { app } from "../../../app";
+import { resizeRequestPayload } from "../../test-helpers/test-payload";
 import fs from "fs";
 
 describe("Images GrayScale Route", () => {
