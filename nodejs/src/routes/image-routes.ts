@@ -1,10 +1,10 @@
 import express from "express";
 
-import { imageResize } from "../controllers/image-controllers/image-resize";
-import { imageGrayScale } from "../controllers/image-controllers/image-grayscale";
-import { imageTransformation } from "../controllers/image-controllers/image-transformation";
-import { imageBlur } from "../controllers/image-controllers/image-blur";
-import { imageNegate } from "../controllers/image-controllers/image-negate";
+import { imageResize } from "../controllers/v1/image-controllers/image-resize";
+import { imageGrayScale } from "../controllers/v1/image-controllers/image-grayscale";
+import { imageTransformation } from "../controllers/v1/image-controllers/image-transformation";
+import { imageBlur } from "../controllers/v1/image-controllers/image-blur";
+import { imageNegate } from "../controllers/v1/image-controllers/image-negate";
 
 const router = express.Router();
 
