@@ -25,11 +25,11 @@ app.use(notDefined);
 
 //Intialize Routers
 import indexRouter from "./routes/index-routes";
-import imageRouter from "./routes/image-routes";
+import v1ImageRouter from "./routes/v1/image-routes";
 
 //Use Routers
 app.use("/", indexRouter);
-app.use("/v1/image", imageRouter);
+app.use("/v1/image", v1ImageRouter);
 
 //Intitialize Image Logger
 app.use(imageLogger);
