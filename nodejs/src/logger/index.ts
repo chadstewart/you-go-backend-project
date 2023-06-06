@@ -9,4 +9,13 @@ if (process.env.NODE_ENV === 'development') {
   logger = buildProdLogger();
 }
 
+export const loggerWrapper = (
+    logLevel: "error" | "warn" | "info",
+    message: string,
+    source?: string
+  ) => {
+    if(source) return logger[logLevel](message, { logSource: source });
+    return logger[logLevel](message);
+  };
+
 export default logger;
