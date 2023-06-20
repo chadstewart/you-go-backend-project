@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from "express";
 import { errorMessages } from "../../../utils/error-utils";
 import { prepareBase64ImageData } from "../../../utils/prepare-base64-image-data";
 import { decodeImg } from "../../../utils/base64-utils";
-import logger, { loggerWrapper } from "../../../logger";
+import { loggerWrapper } from "../../../logger";
 import imageManipulation from "../../../services/image-manipulation";
 
 export async function imageResize (req: Request, res: Response, next: NextFunction) {

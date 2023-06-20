@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from "express";
 import { errorMessages } from "../../../utils/error-utils";
 import { prepareBase64ImageData } from "../../../utils/prepare-base64-image-data";
 import { decodeImg } from "../../../utils/base64-utils";
-import logger from "../../../logger";
+import { loggerWrapper } from "../../../logger";
 import imageManipulation from "../../../services/image-manipulation";
 import { RequireAtLeastOne } from "../../../interfaces/require-at-least-one";
 
@@ -101,7 +101,7 @@ export async function imageTransformation (req: Request, res: Response, next: Ne
 
         return next();
     } catch (error) {
-        logger.error(`${error}`, { manipulation: "transformation"});
+        loggerWrapper("error", `${error}`, "transformation controller");
         return res.status(500).json({
             success: "false",
             message: errorMessages.internalServerError

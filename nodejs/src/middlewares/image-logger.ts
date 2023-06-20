@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import logger, { loggerWrapper } from "../logger";
+import { loggerWrapper } from "../logger";
 
 export default function imageLogger (req: Request, res: Response) {
     const { rawHeaders, httpVersion, method, body, url, params } = req;
@@ -18,13 +18,13 @@ export default function imageLogger (req: Request, res: Response) {
     const isStatusCodeIn200Range = 200 <= statusCode && statusCode < 300;
 
     if(isStatusCodeIn200Range) {
-        logger.info(JSON.stringify({
+        loggerWrapper("info", JSON.stringify({
             headers,
             statusCode,
             serverResponse
         }));
     } else {
-        logger.warn(JSON.stringify({
+        loggerWrapper("warn", JSON.stringify({
             headers,
             statusCode,
             serverResponse
